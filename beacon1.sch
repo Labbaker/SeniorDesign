@@ -33871,7 +33871,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <label x="-1135.38" y="-139.7" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$11" class="0">
+<net name="N$110" class="0">
 <segment>
 <pinref part="5V_REV_LED" gate="G$1" pin="C"/>
 <pinref part="R37" gate="G$1" pin="2"/>
@@ -33892,7 +33892,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <wire x1="-873.76" y1="-254" x2="-873.76" y2="-259.08" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$12" class="0">
+<net name="N$120" class="0">
 <segment>
 <pinref part="3V3_ON_LED" gate="G$1" pin="C"/>
 <pinref part="R39" gate="G$1" pin="2"/>
