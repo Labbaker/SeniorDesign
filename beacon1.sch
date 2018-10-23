@@ -22887,91 +22887,6 @@ Source: www.epcos.com .. 01430148.pdf</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="logo">
-<description>&lt;b&gt;Electronic and CadSoft EAGLE logos&lt;/b&gt;&lt;p&gt;</description>
-<packages>
-</packages>
-<symbols>
-<symbol name="ESD">
-<description>&lt;b&gt;Logo: import from bit map with import-bmp.ulp&lt;/b&gt;</description>
-<polygon width="0.1" layer="94" spacing="0.564">
-<vertex x="0.2" y="0.2"/>
-<vertex x="4.7" y="8.1"/>
-<vertex x="6.6" y="7.2"/>
-<vertex x="6.3" y="6.7"/>
-<vertex x="6.2" y="6.5"/>
-<vertex x="6.2" y="5.7"/>
-<vertex x="6.5" y="1.7"/>
-<vertex x="6.7" y="1.7"/>
-<vertex x="7" y="1.9"/>
-<vertex x="7.2" y="2.3"/>
-<vertex x="7.4" y="2.9"/>
-<vertex x="7.5" y="3.8"/>
-<vertex x="7.5" y="5.7"/>
-<vertex x="8" y="6.4"/>
-<vertex x="8.3" y="6.4"/>
-<vertex x="11" y="5.1"/>
-<vertex x="11" y="5"/>
-<vertex x="9.1" y="3.3"/>
-<vertex x="8.7" y="2.7"/>
-<vertex x="8.5" y="2.3"/>
-<vertex x="8.5" y="2"/>
-<vertex x="8.6" y="1.8"/>
-<vertex x="8.7" y="1.7"/>
-<vertex x="8.9" y="1.7"/>
-<vertex x="9.6" y="2.1"/>
-<vertex x="10.4" y="2.6"/>
-<vertex x="11.1" y="3.1"/>
-<vertex x="12" y="3.7"/>
-<vertex x="12.8" y="4.2"/>
-<vertex x="13" y="4.2"/>
-<vertex x="21.3" y="0.4"/>
-<vertex x="21.3" y="0.2"/>
-</polygon>
-<polygon width="0.1" layer="94" spacing="0.564">
-<vertex x="5.6" y="9.2"/>
-<vertex x="10.8" y="18.2"/>
-<vertex x="14.8" y="11.3"/>
-<vertex x="14.8" y="11.1"/>
-<vertex x="10" y="10.2"/>
-<vertex x="9.9" y="10.1"/>
-<vertex x="7.8" y="8.2"/>
-<vertex x="7.6" y="8.2"/>
-</polygon>
-<polygon width="0.1" layer="94" spacing="0.564">
-<vertex x="9.6" y="7.2"/>
-<vertex x="10.3" y="7.7"/>
-<vertex x="10.5" y="7.7"/>
-<vertex x="11.5" y="7.4"/>
-<vertex x="11.8" y="7.2"/>
-<vertex x="12" y="6.9"/>
-<vertex x="11.9" y="6.5"/>
-<vertex x="11.7" y="6.2"/>
-</polygon>
-<polygon width="0.1" layer="94" spacing="0.564">
-<vertex x="19.7" y="2.6"/>
-<vertex x="14.7" y="5"/>
-<vertex x="14.7" y="5.1"/>
-<vertex x="16.9" y="7.5"/>
-</polygon>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="ESD" prefix="LOGO">
-<description>&lt;b&gt;Logo: import from bit map with import-bmp.ulp&lt;/b&gt;</description>
-<gates>
-<gate name="G$1" symbol="ESD" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-Connectors">
 <description>&lt;h3&gt;SparkFun Connectors&lt;/h3&gt;
 This library contains electrically-functional connectors. 
@@ -30490,7 +30405,6 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="GND30" library="supply1" deviceset="GND" device=""/>
 <part name="IC7" library="linear" deviceset="LMV358?*" device="MM" technology="X" value="LMV358IDGKR"/>
 <part name="D4" library="diode" deviceset="DIODE-" device="MINIMELF" value="CD1206-S01575"/>
-<part name="LOGO1" library="logo" deviceset="ESD" device=""/>
 <part name="FTDI" library="ftdichip" deviceset="FT232R" device="L"/>
 <part name="FTDI_RESET" library="SparkFun-Connectors" deviceset="TEST-POINT" device="2"/>
 <part name="R6" library="adafruit" deviceset="R-US_" device="M1206" value="10k"/>
@@ -30976,7 +30890,6 @@ needs to go low to enable writing!
 <attribute name="NAME" x="-1366.0374" y="-247.65" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="-1356.5886" y="-260.35" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="LOGO1" gate="G$1" x="-961.39" y="-25.4" smashed="yes"/>
 <instance part="FTDI" gate="1" x="-1060.45" y="-237.49" smashed="yes">
 <attribute name="NAME" x="-1070.61" y="-210.82" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-1070.61" y="-267.97" size="1.778" layer="96"/>
