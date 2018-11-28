@@ -1,25 +1,25 @@
 EAGLE AutoRouter Statistics:
 
-Job           : D:/Documents/SeniorYear/7thSemester/Engr498/SeniorDesign/beacon1.brd
+Job           : D:/Documents/SeniorYear/7thSemester/Engr498/SeniorDesign/BeaconBoard/beacon1.brd
 
-Start at      : 16:20:06 (10/22/2018)
-End at        : 16:20:12 (10/22/2018)
-Elapsed time  : 00:00:04
+Start at      : 14:51:11 (11/27/2018)
+End at        : 14:51:12 (11/27/2018)
+Elapsed time  : 00:00:00
 
-Signals       :   173   RoutingGrid: 25 mil  Layers: 2
-Connections   :   247   predefined:  0 ( 0 Vias )
+Signals       :   154   RoutingGrid: 25 mil  Layers: 2
+Connections   :   154   predefined:  119 ( 35 Vias )
 
-Router memory :   138240
+Router memory :   76704
 
 Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
 
-Time per pass     :  00:00:00  00:00:01  00:00:01  00:00:01  00:00:00  00:00:01
+Time per pass     :  00:00:00  00:00:00  00:00:00  00:00:00  00:00:00  00:00:00
 Number of Ripups  :         0         0         0         0         0         0
 max. Level        :         0         1         0         0         0         0
 max. Total        :         0         0         0         0         0         0
 
-Routed            :        10       193       193       193       193       193
-Vias              :         0       224        85        63        57        59
-Resolution        :     4.0 %    78.1 %    78.1 %    78.1 %    78.1 %    78.1 %
+Routed            :         0         0         0         0         0         0
+Vias              :         0         0         0         0         0         0
+Resolution        :    77.3 %    77.3 %    77.3 %    77.3 %    77.3 %    77.3 %
 
-Final             : 78.1% finished
+Final             : 77.3% finished

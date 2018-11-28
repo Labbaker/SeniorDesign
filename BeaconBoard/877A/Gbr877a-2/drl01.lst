@@ -1,0 +1,23 @@
+Drill Listing
+=============
+Drill: 10  Tool: 1  Feed: 95  Speed: 300
+X 94000  Y 106500
+X 101500  Y 95000
+X 102500  Y 104500
+
+Drill: 39  Tool: 2  Feed: 197  Speed: 550
+X 17126  Y 135000
+X 25000  Y 135000
+X 32874  Y 135000
+
+Drill: 70  Tool: 3  Feed: 81  Speed: 550
+X 10000  Y 190000
+X 190000  Y 10000
+
+Drill: 95  Tool: 4  Feed: 66  Speed: 550
+X 20000  Y 60000
+X 20000  Y 100000
+X 180000  Y 100000
+X 180000  Y 60000
+
+End of Listing
