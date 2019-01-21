@@ -12,7 +12,7 @@
 // and help support open source hardware & software! -ada
 
 #include <Adafruit_GPS.h>
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 // If you're using a GPS module:
 // Connect the GPS Power pin to 5V
@@ -30,13 +30,13 @@
 
 // If using software serial, keep this line enabled
 // (you can change the pin numbers to match your wiring):
-SoftwareSerial mySerial(3, 2);
+//SoftwareSerial mySerial(3, 2);
 
 // If using hardware serial (e.g. Arduino Mega), comment out the
 // above SoftwareSerial line, and enable this line instead
 // (you can change the Serial number to match your wiring):
 
-//HardwareSerial mySerial = Serial1;
+HardwareSerial mySerial = Serial;
 
 
 Adafruit_GPS GPS(&mySerial);
