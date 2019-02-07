@@ -1,0 +1,1 @@
+This is the README.txt for the mobile applications
