@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Beacon</string>
+    <string name="emergency_options">Emergency Options</string>
+    <string name="map_overview">Map Overview</string>
+    <string name="about">About</string>
+    <string name="hikealert">HikeAlert</string>
+</resources>
