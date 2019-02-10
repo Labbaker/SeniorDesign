@@ -37,3 +37,29 @@ transmit all the stuff related to alerts/ack'ing them
 responds to main station ping every hour
 
 
+Connections:
+Mobile app -> Beacon
+Initial Bluetooth connection
+Emergency commands
+GPS request
+
+Beacon -> Mobile App
+Initial Bluetooth connection
+Emergency command ack
+GPS
+
+Beacon -> Beacon
+Mesh Network
+Passing GPS
+emergency alerts
+
+Beacon -> main station
+mesh network connection
+ack w/ time and GPS
+emergency alerts
+
+main station -> beacon
+mesh network
+ping request
+emergency alert ack w/ note
+
