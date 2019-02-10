@@ -3,7 +3,7 @@ Checklist of things to do:
 
 Main Station Software:
 main page: beacon map, view emergency alerts, sidebar w/ new alerts (all pages have back to main menu option)
-Map view of beacons - map of the tucson area with icons for each beacon, (gps coords on mouseover?) displays if alert triggered or repair needed.
+Map view of beacons - map of the tucson area with icons for each beacon, (gps coords on mouseover? ping on mouseover?) displays if alert triggered or repair needed.
 Emergency alerts page: new displayed, resolved on different page
 -resolved page: data abt alert
 when viewing new alert, text box for message + ack
@@ -14,6 +14,7 @@ Xbee connection - receive GPS data from beacons
 XBee connection - get alerts from beacons after the beacons get them from the app
 XBee - send ack + message to alert device
 Interface with MySQL database?!?! PHP database!?!?!?
+pings beacons every hour
 
 Mobile Application:
 Main page: buttons for emergencies options, map, "about app" and (about me") - each of these pages has a link back to the main page
@@ -31,6 +32,8 @@ Beacon Software:
 GPS connection: get the beacon's gps, save it. get new coords once every 24 hours, gps should sleep
 bluetooth/mobile app: 
 (according to adafruit tutorial) broadcasts a char string that mobile app bluetooth looks for
-send GPS coords if mobile app requests it for map
+send GPS coords if mobile app requests it for map. 
+transmit all the stuff related to alerts/ack'ing them
+responds to main station ping every hour
 
 
