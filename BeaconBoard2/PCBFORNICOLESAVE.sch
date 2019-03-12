@@ -6579,8 +6579,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="C17" library="Capacitors" deviceset="CAP_NP" device="1206" value="10u"/>
 <part name="R12" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="D8" library="Diodes" deviceset="DIODE" device="SOD323" value="BAT54"/>
-<part name="GPS_RX" library="Connectors" deviceset="JUMPER" device="30V"/>
-<part name="GPS_PPS" library="Connectors" deviceset="JUMPER" device="30V"/>
 <part name="C24" library="Capacitors" deviceset="CAP_NP" device="0603" value="100n"/>
 <part name="C25" library="Capacitors" deviceset="CAP_NP" device="1206" value="10u"/>
 <part name="C26" library="Capacitors" deviceset="CAP_NP" device="1206" value="100u"/>
@@ -7631,7 +7629,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <pinref part="U1" gate="G$1" pin="P$8"/>
 </segment>
 </net>
-<net name="GPS_FLEX" class="0">
+<net name="GPS_RX" class="0">
 <segment>
 <wire x1="71.12" y1="15.24" x2="71.12" y2="-2.54" width="0.1524" layer="91"/>
 <label x="71.12" y="12.7" size="1.778" layer="95" rot="MR270"/>
@@ -7883,12 +7881,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <attribute name="NAME" x="27.94" y="60.96" size="1.016" layer="95" rot="R270" align="center"/>
 <attribute name="VALUE" x="33.02" y="60.96" size="1.016" layer="96" rot="R270" align="center"/>
 </instance>
-<instance part="GPS_RX" gate="G$1" x="43.18" y="25.4" smashed="yes">
-<attribute name="NAME" x="43.18" y="26.67" size="1.016" layer="95" align="bottom-center"/>
-</instance>
-<instance part="GPS_PPS" gate="G$1" x="83.82" y="25.4" smashed="yes">
-<attribute name="NAME" x="83.82" y="26.67" size="1.016" layer="95" align="bottom-center"/>
-</instance>
 <instance part="D20" gate="G$1" x="15.24" y="43.18" smashed="yes" rot="R90">
 <attribute name="NAME" x="13.97" y="45.72" size="1.778" layer="95" rot="R180" align="center"/>
 <attribute name="VALUE" x="13.97" y="48.26" size="1.778" layer="96" rot="R180" align="center"/>
@@ -7948,9 +7940,9 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="48.26" y1="40.64" x2="30.48" y2="40.64" width="0.1524" layer="91"/>
 <label x="43.18" y="40.64" size="1.778" layer="95" rot="MR0"/>
 <pinref part="GPS" gate="G$1" pin="RX"/>
-<wire x1="30.48" y1="40.64" x2="30.48" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="25.4" x2="40.64" y2="25.4" width="0.1524" layer="91"/>
-<pinref part="GPS_RX" gate="G$1" pin="1"/>
+<wire x1="30.48" y1="40.64" x2="30.48" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="20.32" x2="30.48" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="R31" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="3V3" class="0">
@@ -7982,29 +7974,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="48.26" y1="43.18" x2="27.94" y2="43.18" width="0.1524" layer="91"/>
 <label x="43.18" y="43.18" size="1.778" layer="95" rot="MR0"/>
 <pinref part="R27" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="GPS_PPS" class="0">
-<segment>
-<wire x1="78.74" y1="45.72" x2="96.52" y2="45.72" width="0.1524" layer="91"/>
-<label x="83.82" y="45.72" size="1.778" layer="95"/>
-<pinref part="GPS" gate="G$1" pin="1PPS"/>
-<wire x1="86.36" y1="25.4" x2="96.52" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="25.4" x2="96.52" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="GPS_PPS" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="GPS_FLEX" class="0">
-<segment>
-<wire x1="45.72" y1="25.4" x2="48.26" y2="25.4" width="0.1524" layer="91"/>
-<label x="58.42" y="25.4" size="1.778" layer="95"/>
-<pinref part="GPS_RX" gate="G$1" pin="2"/>
-<pinref part="GPS_PPS" gate="G$1" pin="1"/>
-<wire x1="48.26" y1="25.4" x2="81.28" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="20.32" x2="48.26" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="20.32" x2="48.26" y2="25.4" width="0.1524" layer="91"/>
-<junction x="48.26" y="25.4"/>
-<pinref part="R31" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$20" class="0">
