@@ -6538,6 +6538,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="SD" library="Connectors" deviceset="MICROSD" device="FRONT"/>
 <part name="Q1" library="Transistors" deviceset="NFET" device="WDFN-6" value="FDC645N"/>
 <part name="R2" library="Resistors" deviceset="RES" device="0603" value="10k"/>
+<part name="R3" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="D1" library="Diodes" deviceset="LED" device="1206"/>
 <part name="D2" library="Diodes" deviceset="LED" device="1206"/>
 <part name="R4" library="Resistors" deviceset="RES" device="0603" value="1k"/>
@@ -8111,17 +8112,21 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instance part="SD" gate="G$1" x="55.88" y="33.02" smashed="yes">
 <attribute name="NAME" x="58.42" y="43.18" size="1.4224" layer="95" align="center"/>
 </instance>
-<instance part="Q1" gate="G$1" x="-15.24" y="40.64" smashed="yes">
-<attribute name="NAME" x="-13.97" y="41.91" size="1.016" layer="95" align="center-left"/>
-<attribute name="VALUE" x="-13.97" y="39.37" size="1.016" layer="96" align="center-left"/>
+<instance part="Q1" gate="G$1" x="27.94" y="17.78" smashed="yes">
+<attribute name="NAME" x="29.21" y="19.05" size="1.016" layer="95" align="center-left"/>
+<attribute name="VALUE" x="29.21" y="16.51" size="1.016" layer="96" align="center-left"/>
 </instance>
-<instance part="R2" gate="G$1" x="-15.24" y="15.24" smashed="yes">
-<attribute name="NAME" x="-17.145" y="15.24" size="1.016" layer="95" rot="R90" align="center"/>
-<attribute name="VALUE" x="-13.335" y="15.24" size="1.016" layer="96" rot="R90" align="center"/>
+<instance part="R2" gate="G$1" x="17.78" y="10.16" smashed="yes">
+<attribute name="NAME" x="15.875" y="10.16" size="1.016" layer="95" rot="R90" align="center"/>
+<attribute name="VALUE" x="19.685" y="10.16" size="1.016" layer="96" rot="R90" align="center"/>
 </instance>
-<instance part="D1" gate="G$1" x="-15.24" y="25.4" smashed="yes">
-<attribute name="NAME" x="-12.7" y="26.67" size="1.778" layer="95" rot="R90" align="center"/>
-<attribute name="VALUE" x="-10.16" y="26.67" size="1.778" layer="96" rot="R90" align="center"/>
+<instance part="R3" gate="G$1" x="15.24" y="30.48" smashed="yes" rot="R90">
+<attribute name="NAME" x="15.24" y="28.575" size="1.016" layer="95" rot="R180" align="center"/>
+<attribute name="VALUE" x="15.24" y="32.385" size="1.016" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="D1" gate="G$1" x="22.86" y="30.48" smashed="yes" rot="R90">
+<attribute name="NAME" x="21.59" y="33.02" size="1.778" layer="95" rot="R180" align="center"/>
+<attribute name="VALUE" x="21.59" y="35.56" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
 <instance part="D2" gate="G$1" x="22.86" y="40.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="21.59" y="43.18" size="1.778" layer="95" rot="R180" align="center"/>
@@ -8158,40 +8163,54 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 </net>
 <net name="3V3" class="0">
 <segment>
+<pinref part="SD" gate="G$1" pin="VCC"/>
+<wire x1="43.18" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
+<label x="43.18" y="33.02" size="1.778" layer="95" rot="MR0"/>
+</segment>
+<segment>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="40.64" x2="2.54" y2="40.64" width="0.1524" layer="91"/>
 <label x="5.08" y="40.64" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="-15.24" y1="45.72" x2="-25.4" y2="45.72" width="0.1524" layer="91"/>
-<label x="-22.86" y="45.72" size="1.778" layer="95"/>
-<pinref part="Q1" gate="G$1" pin="D"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="12.7" y1="30.48" x2="2.54" y2="30.48" width="0.1524" layer="91"/>
+<label x="5.08" y="30.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SD_CD" class="0">
 <segment>
 <pinref part="SD" gate="G$1" pin="CD"/>
-<wire x1="43.18" y1="25.4" x2="27.94" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="25.4" x2="33.02" y2="25.4" width="0.1524" layer="91"/>
 <label x="43.18" y="25.4" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="SD_PWR" class="0">
 <segment>
 <pinref part="Q1" gate="G$1" pin="G"/>
-<wire x1="-22.86" y1="38.1" x2="-40.64" y2="38.1" width="0.1524" layer="91"/>
-<label x="-38.1" y="38.1" size="1.778" layer="95"/>
+<wire x1="20.32" y1="15.24" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="12.7" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="15.24" x2="2.54" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<junction x="17.78" y="15.24"/>
+<label x="5.08" y="15.24" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
-<wire x1="-15.24" y1="2.54" x2="-15.24" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="Q1" gate="G$1" pin="S"/>
+<wire x1="27.94" y1="12.7" x2="27.94" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="5.08" x2="17.78" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="5.08" x2="17.78" y2="7.62" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<label x="-15.24" y="2.54" size="1.778" layer="95"/>
+<label x="20.32" y="5.08" size="1.778" layer="95"/>
 </segment>
+</net>
+<net name="N$1" class="0">
 <segment>
-<pinref part="SD" gate="G$1" pin="GND"/>
-<wire x1="43.18" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
-<label x="38.1" y="30.48" size="1.778" layer="95"/>
+<pinref part="D1" gate="G$1" pin="A"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="17.78" y1="30.48" x2="20.32" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -8201,31 +8220,24 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="17.78" y1="40.64" x2="20.32" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="SD_GND" class="0">
+<segment>
+<pinref part="Q1" gate="G$1" pin="D"/>
+<wire x1="27.94" y1="22.86" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="D1" gate="G$1" pin="C"/>
+<wire x1="25.4" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="SD" gate="G$1" pin="GND"/>
+<wire x1="27.94" y1="30.48" x2="43.18" y2="30.48" width="0.1524" layer="91"/>
+<junction x="27.94" y="30.48"/>
+<label x="43.18" y="30.48" size="1.778" layer="95" rot="MR0"/>
+</segment>
+</net>
 <net name="SCK" class="0">
 <segment>
 <pinref part="SD" gate="G$1" pin="SCK"/>
 <wire x1="25.4" y1="40.64" x2="43.18" y2="40.64" width="0.1524" layer="91"/>
 <label x="43.18" y="40.64" size="1.778" layer="95" rot="MR0"/>
 <pinref part="D2" gate="G$1" pin="C"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="D1" gate="G$1" pin="C"/>
-<pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="-15.24" y1="22.86" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="SD_3V3" class="0">
-<segment>
-<pinref part="SD" gate="G$1" pin="VCC"/>
-<label x="35.56" y="33.02" size="1.778" layer="95"/>
-<pinref part="Q1" gate="G$1" pin="S"/>
-<pinref part="D1" gate="G$1" pin="A"/>
-<wire x1="-15.24" y1="35.56" x2="-15.24" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="-15.24" y1="33.02" x2="-15.24" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="43.18" y1="33.02" x2="-15.24" y2="33.02" width="0.1524" layer="91"/>
-<junction x="-15.24" y="33.02"/>
 </segment>
 </net>
 </nets>
