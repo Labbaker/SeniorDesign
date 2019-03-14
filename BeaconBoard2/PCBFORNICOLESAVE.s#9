@@ -6388,7 +6388,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="C23" library="Capacitors" deviceset="CAP_NP" device="0603" value="100n"/>
 <part name="UART" library="Connectors" deviceset="PINHD-1X5" device="90RH"/>
 <part name="BATT" library="Connectors" deviceset="PINHD-1X4" device="90RH"/>
-<part name="SOL1" library="Connectors" deviceset="PINHD-1X2" device="/90"/>
 <part name="SOL2" library="Connectors" deviceset="PINHD-1X2" device="/90"/>
 <part name="D6" library="Diodes" deviceset="DIODE" device="DO214AC"/>
 <part name="R8" library="Resistors" deviceset="RES" device="0603" value="50"/>
@@ -6418,10 +6417,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="PC0-8" library="Connectors" deviceset="PINHD-1X8" device="2MM"/>
 <part name="PK0-3" library="Connectors" deviceset="PINHD-1X4" device="2MM"/>
 <part name="RESET" library="Switches" deviceset="1P1T-NO" device="TH"/>
-<part name="D17" library="Diodes" deviceset="LED" device="1206"/>
-<part name="D18" library="Diodes" deviceset="LED" device="1206"/>
-<part name="R24" library="Resistors" deviceset="RES" device="0603" value="1k"/>
-<part name="R25" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="D19" library="Diodes" deviceset="LED" device="1206"/>
 <part name="D21" library="Diodes" deviceset="LED" device="1206"/>
 <part name="R26" library="Resistors" deviceset="RES" device="0603" value="1k"/>
@@ -6429,7 +6424,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="D23" library="Diodes" deviceset="LED" device="1206"/>
 <part name="R29" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="R30" library="Resistors" deviceset="RES" device="0603" value="1k"/>
-<part name="JP2" library="Connectors" deviceset="PINHD-1X4" device="RH"/>
+<part name="3V3" library="Connectors" deviceset="PINHD-1X4" device="RH"/>
 <part name="JP1" library="Connectors" deviceset="PINHD-2X3" device="ISP"/>
 <part name="R16" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="R17" library="Resistors" deviceset="RES" device="0603" value="1k"/>
@@ -6452,6 +6447,11 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="R27" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="R31" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="D22" library="Diodes" deviceset="LED" device="1206"/>
+<part name="D17" library="Diodes" deviceset="LED" device="1206"/>
+<part name="D18" library="Diodes" deviceset="LED" device="1206"/>
+<part name="R24" library="Resistors" deviceset="RES" device="0603" value="1k"/>
+<part name="R25" library="Resistors" deviceset="RES" device="0603" value="1k"/>
+<part name="SOL1" library="Connectors" deviceset="PINHD-1X2" device="/90"/>
 </parts>
 <sheets>
 <sheet>
@@ -7446,10 +7446,10 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instance part="C9" gate="G$1" x="5.08" y="25.4"/>
 <instance part="D3" gate="G$1" x="99.06" y="17.78" rot="R90"/>
 <instance part="R5" gate="G$1" x="91.44" y="17.78" rot="R90"/>
-<instance part="D17" gate="G$1" x="91.44" y="38.1" rot="R90"/>
-<instance part="D18" gate="G$1" x="91.44" y="45.72" rot="R90"/>
-<instance part="R24" gate="G$1" x="83.82" y="38.1" rot="R90"/>
-<instance part="R25" gate="G$1" x="83.82" y="45.72" rot="R90"/>
+<instance part="D17" gate="G$1" x="83.82" y="45.72" rot="R90"/>
+<instance part="D18" gate="G$1" x="83.82" y="38.1" rot="R90"/>
+<instance part="R24" gate="G$1" x="91.44" y="45.72" rot="R90"/>
+<instance part="R25" gate="G$1" x="91.44" y="38.1" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -7471,14 +7471,14 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <junction x="5.08" y="30.48"/>
 </segment>
 <segment>
-<pinref part="R24" gate="G$1" pin="1"/>
 <wire x1="81.28" y1="38.1" x2="78.74" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="38.1" x2="78.74" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="R25" gate="G$1" pin="1"/>
 <wire x1="81.28" y1="45.72" x2="78.74" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="45.72" x2="68.58" y2="45.72" width="0.1524" layer="91"/>
 <label x="71.12" y="45.72" size="1.778" layer="95"/>
 <junction x="78.74" y="45.72"/>
+<pinref part="D17" gate="G$1" pin="A"/>
+<pinref part="D18" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="XBEE_RX" class="0">
@@ -7488,9 +7488,9 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <label x="25.4" y="25.4" size="1.778" layer="95" rot="MR0"/>
 </segment>
 <segment>
-<pinref part="D17" gate="G$1" pin="C"/>
 <wire x1="93.98" y1="38.1" x2="111.76" y2="38.1" width="0.1524" layer="91"/>
 <label x="109.22" y="38.1" size="1.778" layer="95" rot="MR0"/>
+<pinref part="R25" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -7534,23 +7534,23 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <label x="25.4" y="27.94" size="1.778" layer="95" rot="MR0"/>
 </segment>
 <segment>
-<pinref part="D18" gate="G$1" pin="C"/>
 <wire x1="111.76" y1="45.72" x2="93.98" y2="45.72" width="0.1524" layer="91"/>
 <label x="109.22" y="45.72" size="1.778" layer="95" rot="MR0"/>
+<pinref part="R24" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
-<pinref part="R25" gate="G$1" pin="2"/>
-<pinref part="D18" gate="G$1" pin="A"/>
 <wire x1="86.36" y1="45.72" x2="88.9" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="D17" gate="G$1" pin="C"/>
+<pinref part="R24" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
-<pinref part="R24" gate="G$1" pin="2"/>
-<pinref part="D17" gate="G$1" pin="A"/>
 <wire x1="86.36" y1="38.1" x2="88.9" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="D18" gate="G$1" pin="C"/>
+<pinref part="R25" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
@@ -8133,6 +8133,23 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="20.32" y1="55.88" x2="5.08" y2="55.88" width="0.1524" layer="91"/>
 <label x="7.62" y="55.88" size="1.778" layer="95"/>
 </segment>
+<segment>
+<wire x1="33.02" y1="25.4" x2="38.1" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="25.4" x2="38.1" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="25.4" x2="45.72" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="25.4" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="25.4" x2="53.34" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="25.4" x2="53.34" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="C13" gate="G$1" pin="P$2"/>
+<pinref part="C14" gate="G$1" pin="P$2"/>
+<pinref part="C15" gate="G$1" pin="P$2"/>
+<junction x="45.72" y="25.4"/>
+<junction x="38.1" y="25.4"/>
+<pinref part="BATT-_GND" gate="G$1" pin="2"/>
+<label x="58.42" y="25.4" size="1.778" layer="95"/>
+<wire x1="66.04" y1="25.4" x2="53.34" y2="25.4" width="0.1524" layer="91"/>
+<junction x="53.34" y="25.4"/>
+</segment>
 </net>
 <net name="3V3" class="0">
 <segment>
@@ -8160,7 +8177,9 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="38.1" y1="35.56" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="33.02" x2="38.1" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="C13" gate="G$1" pin="P$1"/>
-<label x="48.26" y="35.56" size="1.778" layer="95"/>
+<label x="58.42" y="35.56" size="1.778" layer="95"/>
+<wire x1="53.34" y1="35.56" x2="66.04" y2="35.56" width="0.1524" layer="91"/>
+<junction x="53.34" y="35.56"/>
 </segment>
 </net>
 <net name="BATT-" class="0">
@@ -8219,13 +8238,13 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <label x="40.64" y="45.72" size="1.778" layer="95" rot="MR0"/>
 <pinref part="EN_H" gate="G$1" pin="1"/>
 </segment>
-</net>
-<net name="EN" class="0">
 <segment>
 <pinref part="U2" gate="G$1" pin="B2"/>
 <wire x1="22.86" y1="7.62" x2="33.02" y2="7.62" width="0.1524" layer="91"/>
 <label x="25.4" y="7.62" size="1.778" layer="95"/>
 </segment>
+</net>
+<net name="EN" class="0">
 <segment>
 <pinref part="B2" gate="G$1" pin="P$5"/>
 <wire x1="5.08" y1="45.72" x2="20.32" y2="45.72" width="0.1524" layer="91"/>
@@ -8262,22 +8281,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <label x="60.96" y="12.7" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
-<net name="N$6" class="0">
-<segment>
-<wire x1="33.02" y1="25.4" x2="38.1" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="25.4" x2="38.1" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="25.4" x2="45.72" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="25.4" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="25.4" x2="53.34" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="25.4" x2="53.34" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="C13" gate="G$1" pin="P$2"/>
-<pinref part="C14" gate="G$1" pin="P$2"/>
-<pinref part="C15" gate="G$1" pin="P$2"/>
-<junction x="45.72" y="25.4"/>
-<junction x="38.1" y="25.4"/>
-<pinref part="BATT-_GND" gate="G$1" pin="2"/>
-</segment>
-</net>
 </nets>
 </sheet>
 <sheet>
@@ -8287,7 +8290,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instances>
 <instance part="UART" gate="A" x="5.08" y="33.02" rot="R180"/>
 <instance part="BATT" gate="A" x="5.08" y="15.24" rot="R180"/>
-<instance part="SOL1" gate="G$1" x="5.08" y="50.8" rot="R180"/>
 <instance part="SOL2" gate="G$1" x="35.56" y="50.8" rot="MR180"/>
 <instance part="D6" gate="G$1" x="33.02" y="20.32"/>
 <instance part="R8" gate="G$1" x="43.18" y="35.56" rot="R90"/>
@@ -8296,9 +8298,10 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instance part="D23" gate="G$1" x="68.58" y="38.1" rot="MR90"/>
 <instance part="R29" gate="G$1" x="76.2" y="27.94" rot="MR90"/>
 <instance part="R30" gate="G$1" x="76.2" y="38.1" rot="MR90"/>
-<instance part="JP2" gate="A" x="5.08" y="63.5" rot="MR0"/>
+<instance part="3V3" gate="A" x="5.08" y="63.5" rot="MR0"/>
 <instance part="JP1" gate="A" x="63.5" y="12.7"/>
 <instance part="D22" gate="G$1" x="68.58" y="27.94" rot="MR90"/>
+<instance part="SOL1" gate="G$1" x="5.08" y="48.26" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -8318,12 +8321,12 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <pinref part="R10" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="A" pin="3"/>
+<pinref part="3V3" gate="A" pin="3"/>
 <wire x1="7.62" y1="63.5" x2="22.86" y2="63.5" width="0.1524" layer="91"/>
 <label x="15.24" y="63.5" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="A" pin="4"/>
+<pinref part="3V3" gate="A" pin="4"/>
 <wire x1="22.86" y1="60.96" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
 <label x="15.24" y="60.96" size="1.778" layer="95"/>
 </segment>
@@ -8386,18 +8389,18 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <pinref part="BATT" gate="A" pin="4"/>
 </segment>
 <segment>
-<pinref part="SOL1" gate="G$1" pin="2"/>
 <wire x1="7.62" y1="50.8" x2="33.02" y2="50.8" width="0.1524" layer="91"/>
 <label x="15.24" y="50.8" size="1.778" layer="95"/>
 <pinref part="SOL2" gate="G$1" pin="2"/>
+<pinref part="SOL1" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="SOLAR+" class="0">
 <segment>
-<pinref part="SOL1" gate="G$1" pin="1"/>
 <wire x1="7.62" y1="48.26" x2="33.02" y2="48.26" width="0.1524" layer="91"/>
 <label x="15.24" y="48.26" size="1.778" layer="95"/>
 <pinref part="SOL2" gate="G$1" pin="1"/>
+<pinref part="SOL1" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="DBG_TX" class="0">
@@ -8422,12 +8425,12 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <junction x="81.28" y="38.1"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="A" pin="1"/>
+<pinref part="3V3" gate="A" pin="1"/>
 <wire x1="7.62" y1="68.58" x2="22.86" y2="68.58" width="0.1524" layer="91"/>
 <label x="15.24" y="68.58" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP2" gate="A" pin="2"/>
+<pinref part="3V3" gate="A" pin="2"/>
 <wire x1="22.86" y1="66.04" x2="7.62" y2="66.04" width="0.1524" layer="91"/>
 <label x="15.24" y="66.04" size="1.778" layer="95"/>
 </segment>

@@ -6625,7 +6625,6 @@ Logic Level, PowerTrench MOSFET</description>
 <part name="C7" library="Capacitors" deviceset="CAP_NP" device="1206" value="10u"/>
 <part name="Y1" library="Chips" deviceset="XRES" device="1206"/>
 <part name="SD" library="Connectors" deviceset="MICROSD" device="FRONT"/>
-<part name="R2" library="Resistors" deviceset="RES" device="0603" value="10k"/>
 <part name="D2" library="Diodes" deviceset="LED" device="1206"/>
 <part name="R4" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="XBEE" library="adafruit" deviceset="XBEE" device=""/>
@@ -8199,10 +8198,6 @@ Logic Level, PowerTrench MOSFET</description>
 <instance part="SD" gate="G$1" x="55.88" y="33.02" smashed="yes">
 <attribute name="NAME" x="58.42" y="43.18" size="1.4224" layer="95" align="center"/>
 </instance>
-<instance part="R2" gate="G$1" x="12.7" y="15.24" smashed="yes">
-<attribute name="NAME" x="10.795" y="15.24" size="1.016" layer="95" rot="R90" align="center"/>
-<attribute name="VALUE" x="14.605" y="15.24" size="1.016" layer="96" rot="R90" align="center"/>
-</instance>
 <instance part="D2" gate="G$1" x="22.86" y="40.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="21.59" y="43.18" size="1.778" layer="95" rot="R180" align="center"/>
 <attribute name="VALUE" x="21.59" y="45.72" size="1.778" layer="96" rot="R180" align="center"/>
@@ -8272,11 +8267,6 @@ Logic Level, PowerTrench MOSFET</description>
 <wire x1="43.18" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
 <label x="38.1" y="30.48" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="12.7" y1="12.7" x2="12.7" y2="5.08" width="0.1524" layer="91"/>
-<label x="7.62" y="10.16" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="N$4" class="0">
 <segment>
@@ -8296,15 +8286,12 @@ Logic Level, PowerTrench MOSFET</description>
 <net name="SD_3V3" class="0">
 <segment>
 <pinref part="SD" gate="G$1" pin="VCC"/>
-<wire x1="43.18" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="33.02" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
 <label x="33.02" y="33.02" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
 <pinref part="Q3" gate="G$1" pin="S"/>
-<pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="20.32" x2="12.7" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="17.78" x2="25.4" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="17.78" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
