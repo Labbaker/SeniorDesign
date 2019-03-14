@@ -2488,8 +2488,8 @@ grid 5 mm, outline 3.5 x 7.5 mm</description>
 <text x="0" y="1.27" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
 <package name="JUMPER_HC_30V">
-<smd name="1" x="-0.254" y="0" dx="0.254" dy="2.032" layer="1"/>
-<smd name="2" x="0.254" y="0" dx="0.254" dy="2.032" layer="1"/>
+<smd name="1" x="-0.381" y="0" dx="0.508" dy="2.032" layer="1"/>
+<smd name="2" x="0.381" y="0" dx="0.508" dy="2.032" layer="1"/>
 <rectangle x1="-0.381" y1="-1.016" x2="0.381" y2="1.016" layer="29"/>
 <text x="0" y="1.27" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
@@ -8400,7 +8400,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <pinref part="Q2" gate="G$1" pin="S"/>
 <pinref part="C26" gate="G$1" pin="P$2"/>
 <wire x1="139.7" y1="5.08" x2="139.7" y2="7.62" width="0.1524" layer="91"/>
-<junction x="139.7" y="5.08"/>
 <pinref part="C25" gate="G$1" pin="P$2"/>
 <wire x1="132.08" y1="5.08" x2="132.08" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="132.08" y1="5.08" x2="139.7" y2="5.08" width="0.1524" layer="91"/>
@@ -8411,7 +8410,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <junction x="124.46" y="5.08"/>
 <wire x1="111.76" y1="5.08" x2="124.46" y2="5.08" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="5.08" x2="111.76" y2="12.7" width="0.1524" layer="91"/>
-<label x="142.24" y="5.08" size="1.778" layer="95"/>
+<label x="114.3" y="5.08" size="1.778" layer="95"/>
 <wire x1="48.26" y1="5.08" x2="55.88" y2="5.08" width="0.1524" layer="91"/>
 <pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="55.88" y1="5.08" x2="63.5" y2="5.08" width="0.1524" layer="91"/>
@@ -8427,13 +8426,6 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="63.5" y1="7.62" x2="63.5" y2="5.08" width="0.1524" layer="91"/>
 <junction x="63.5" y="5.08"/>
 <pinref part="C18" gate="G$1" pin="P$2"/>
-<pinref part="R15" gate="G$1" pin="2"/>
-<wire x1="160.02" y1="7.62" x2="160.02" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="167.64" y1="7.62" x2="167.64" y2="5.08" width="0.1524" layer="91"/>
-<pinref part="C27" gate="G$1" pin="P$2"/>
-<wire x1="139.7" y1="5.08" x2="160.02" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="160.02" y1="5.08" x2="167.64" y2="5.08" width="0.1524" layer="91"/>
-<junction x="160.02" y="5.08"/>
 </segment>
 </net>
 <net name="BATT+" class="0">
@@ -8507,6 +8499,18 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <junction x="160.02" y="15.24"/>
 <pinref part="C27" gate="G$1" pin="P$1"/>
 <label x="182.88" y="15.24" size="1.778" layer="95" rot="MR0"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="C27" gate="G$1" pin="P$2"/>
+<wire x1="167.64" y1="7.62" x2="167.64" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="R15" gate="G$1" pin="2"/>
+<wire x1="160.02" y1="7.62" x2="160.02" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="160.02" y1="5.08" x2="167.64" y2="5.08" width="0.1524" layer="91"/>
+<junction x="167.64" y="5.08"/>
+<wire x1="167.64" y1="5.08" x2="185.42" y2="5.08" width="0.1524" layer="91"/>
+<label x="182.88" y="5.08" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 </nets>

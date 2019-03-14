@@ -6514,6 +6514,95 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="FDN340P">
+<packages>
+<package name="SSOT-3">
+<description>SuperSOT-3</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.2032" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.2032" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.2032" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.2032" layer="51"/>
+<wire x1="-1.4224" y1="-0.1524" x2="-1.4224" y2="0.6604" width="0.2032" layer="21"/>
+<wire x1="-1.4224" y1="0.6604" x2="-0.7636" y2="0.6604" width="0.2032" layer="21"/>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.1524" width="0.2032" layer="21"/>
+<wire x1="0.7636" y1="0.6604" x2="1.4224" y2="0.6604" width="0.2032" layer="21"/>
+<text x="1.270309375" y="1.270309375" size="1.016240625" layer="25" ratio="18">&gt;NAME</text>
+<text x="-1.90876875" y="-3.181290625" size="0.814409375" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.228828125" y1="0.71190625" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.711909375" y1="-1.296690625" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.169490625" y1="-1.296609375" x2="-0.7112" y2="-0.7112" layer="51"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="EMOS-PD">
+<wire x1="-1.0795" y1="0" x2="-1.905" y2="0" width="0.1524" layer="94"/>
+<wire x1="-1.905" y1="-2.2225" x2="0" y2="-2.2225" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="-2.2225" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-2.2225" x2="0" y2="-2.2225" width="0.1524" layer="94"/>
+<wire x1="-1.5875" y1="2.2225" x2="0" y2="2.2225" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.2225" x2="1.27" y2="2.2225" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.2225" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="2.2225" x2="1.27" y2="-2.2225" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="2.2225" width="0.1524" layer="94"/>
+<circle x="0" y="-2.2225" radius="0.127" width="0.4064" layer="94"/>
+<circle x="0" y="2.2225" radius="0.127" width="0.4064" layer="94"/>
+<text x="2.54135" y="-2.54135" size="1.778940625" layer="96">&gt;VALUE</text>
+<text x="2.5401" y="0" size="1.77806875" layer="95">&gt;NAME</text>
+<text x="0.63531875" y="2.858940625" size="1.016509375" layer="95">D</text>
+<text x="0.635309375" y="-3.811859375" size="1.0165" layer="95">S</text>
+<text x="-3.814990625" y="-1.9075" size="1.01733125" layer="95">G</text>
+<rectangle x1="-2.036009375" y1="1.39975" x2="-1.524" y2="2.921" layer="94"/>
+<rectangle x1="-2.033209375" y1="-0.762453125" x2="-1.524" y2="0.762" layer="94"/>
+<rectangle x1="-2.035" y1="-2.925309375" x2="-1.524" y2="-1.397" layer="94"/>
+<rectangle x1="0.76200625" y1="-0.571503125" x2="1.778" y2="-0.3175" layer="94" rot="R180"/>
+<polygon width="0.1016" layer="94">
+<vertex x="-0.0635" y="0"/>
+<vertex x="-1.0795" y="-0.635"/>
+<vertex x="-1.0795" y="0.635"/>
+</polygon>
+<polygon width="0.1524" layer="94">
+<vertex x="1.27" y="-0.3175"/>
+<vertex x="1.778" y="0.4445"/>
+<vertex x="0.762" y="0.4445"/>
+</polygon>
+<pin name="D" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<pin name="S" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+<pin name="G" x="-5.08" y="-2.54" visible="off" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="FDN340P" prefix="Q">
+<description>P-Channel MOSFET&lt;p&gt;
+Logic Level, PowerTrench MOSFET</description>
+<gates>
+<gate name="G$1" symbol="EMOS-PD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SSOT-3">
+<connects>
+<connect gate="G$1" pin="D" pad="3"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Unavailable"/>
+<attribute name="DESCRIPTION" value=" Die Assymertrical For Fdc6329l "/>
+<attribute name="MF" value="MICROSS/On Semiconductor"/>
+<attribute name="MP" value="FDN340P"/>
+<attribute name="PACKAGE" value="TO-236-3 Micross"/>
+<attribute name="PRICE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -6536,10 +6625,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="C7" library="Capacitors" deviceset="CAP_NP" device="1206" value="10u"/>
 <part name="Y1" library="Chips" deviceset="XRES" device="1206"/>
 <part name="SD" library="Connectors" deviceset="MICROSD" device="FRONT"/>
-<part name="Q1" library="Transistors" deviceset="NFET" device="WDFN-6" value="FDC645N"/>
 <part name="R2" library="Resistors" deviceset="RES" device="0603" value="10k"/>
-<part name="R3" library="Resistors" deviceset="RES" device="0603" value="1k"/>
-<part name="D1" library="Diodes" deviceset="LED" device="1206"/>
 <part name="D2" library="Diodes" deviceset="LED" device="1206"/>
 <part name="R4" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="XBEE" library="adafruit" deviceset="XBEE" device=""/>
@@ -6631,6 +6717,7 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <part name="R24" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="R25" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="SOL1" library="Connectors" deviceset="PINHD-1X2" device="/90"/>
+<part name="Q3" library="FDN340P" deviceset="FDN340P" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8112,21 +8199,9 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instance part="SD" gate="G$1" x="55.88" y="33.02" smashed="yes">
 <attribute name="NAME" x="58.42" y="43.18" size="1.4224" layer="95" align="center"/>
 </instance>
-<instance part="Q1" gate="G$1" x="27.94" y="17.78" smashed="yes">
-<attribute name="NAME" x="29.21" y="19.05" size="1.016" layer="95" align="center-left"/>
-<attribute name="VALUE" x="29.21" y="16.51" size="1.016" layer="96" align="center-left"/>
-</instance>
-<instance part="R2" gate="G$1" x="17.78" y="10.16" smashed="yes">
-<attribute name="NAME" x="15.875" y="10.16" size="1.016" layer="95" rot="R90" align="center"/>
-<attribute name="VALUE" x="19.685" y="10.16" size="1.016" layer="96" rot="R90" align="center"/>
-</instance>
-<instance part="R3" gate="G$1" x="15.24" y="30.48" smashed="yes" rot="R90">
-<attribute name="NAME" x="15.24" y="28.575" size="1.016" layer="95" rot="R180" align="center"/>
-<attribute name="VALUE" x="15.24" y="32.385" size="1.016" layer="96" rot="R180" align="center"/>
-</instance>
-<instance part="D1" gate="G$1" x="22.86" y="30.48" smashed="yes" rot="R90">
-<attribute name="NAME" x="21.59" y="33.02" size="1.778" layer="95" rot="R180" align="center"/>
-<attribute name="VALUE" x="21.59" y="35.56" size="1.778" layer="96" rot="R180" align="center"/>
+<instance part="R2" gate="G$1" x="12.7" y="15.24" smashed="yes">
+<attribute name="NAME" x="10.795" y="15.24" size="1.016" layer="95" rot="R90" align="center"/>
+<attribute name="VALUE" x="14.605" y="15.24" size="1.016" layer="96" rot="R90" align="center"/>
 </instance>
 <instance part="D2" gate="G$1" x="22.86" y="40.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="21.59" y="43.18" size="1.778" layer="95" rot="R180" align="center"/>
@@ -8135,6 +8210,10 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <instance part="R4" gate="G$1" x="15.24" y="40.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="15.24" y="38.735" size="1.016" layer="95" rot="R180" align="center"/>
 <attribute name="VALUE" x="15.24" y="42.545" size="1.016" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="Q3" gate="G$1" x="12.7" y="25.4" smashed="yes">
+<attribute name="VALUE" x="15.24135" y="22.85865" size="1.778940625" layer="96"/>
+<attribute name="NAME" x="15.2401" y="25.4" size="1.77806875" layer="95"/>
 </instance>
 </instances>
 <busses>
@@ -8163,19 +8242,14 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 </net>
 <net name="3V3" class="0">
 <segment>
-<pinref part="SD" gate="G$1" pin="VCC"/>
-<wire x1="43.18" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
-<label x="43.18" y="33.02" size="1.778" layer="95" rot="MR0"/>
-</segment>
-<segment>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="40.64" x2="2.54" y2="40.64" width="0.1524" layer="91"/>
 <label x="5.08" y="40.64" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="30.48" x2="2.54" y2="30.48" width="0.1524" layer="91"/>
 <label x="5.08" y="30.48" size="1.778" layer="95"/>
+<pinref part="Q3" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="SD_CD" class="0">
@@ -8187,30 +8261,21 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 </net>
 <net name="SD_PWR" class="0">
 <segment>
-<pinref part="Q1" gate="G$1" pin="G"/>
-<wire x1="20.32" y1="15.24" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="17.78" y1="12.7" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="17.78" y1="15.24" x2="2.54" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="R2" gate="G$1" pin="1"/>
-<junction x="17.78" y="15.24"/>
-<label x="5.08" y="15.24" size="1.778" layer="95"/>
+<pinref part="Q3" gate="G$1" pin="G"/>
+<wire x1="7.62" y1="22.86" x2="2.54" y2="22.86" width="0.1524" layer="91"/>
+<label x="-2.54" y="22.86" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
-<pinref part="Q1" gate="G$1" pin="S"/>
-<wire x1="27.94" y1="12.7" x2="27.94" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="5.08" x2="17.78" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="17.78" y1="5.08" x2="17.78" y2="7.62" width="0.1524" layer="91"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-<label x="20.32" y="5.08" size="1.778" layer="95"/>
+<pinref part="SD" gate="G$1" pin="GND"/>
+<wire x1="43.18" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
+<label x="38.1" y="30.48" size="1.778" layer="95"/>
 </segment>
-</net>
-<net name="N$1" class="0">
 <segment>
-<pinref part="D1" gate="G$1" pin="A"/>
-<pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="17.78" y1="30.48" x2="20.32" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="12.7" y1="12.7" x2="12.7" y2="5.08" width="0.1524" layer="91"/>
+<label x="7.62" y="10.16" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -8220,24 +8285,26 @@ INTERNATIONAL RECTIFIER, irg4bc15ud-s.pdf</description>
 <wire x1="17.78" y1="40.64" x2="20.32" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="SD_GND" class="0">
-<segment>
-<pinref part="Q1" gate="G$1" pin="D"/>
-<wire x1="27.94" y1="22.86" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="D1" gate="G$1" pin="C"/>
-<wire x1="25.4" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="SD" gate="G$1" pin="GND"/>
-<wire x1="27.94" y1="30.48" x2="43.18" y2="30.48" width="0.1524" layer="91"/>
-<junction x="27.94" y="30.48"/>
-<label x="43.18" y="30.48" size="1.778" layer="95" rot="MR0"/>
-</segment>
-</net>
 <net name="SCK" class="0">
 <segment>
 <pinref part="SD" gate="G$1" pin="SCK"/>
 <wire x1="25.4" y1="40.64" x2="43.18" y2="40.64" width="0.1524" layer="91"/>
 <label x="43.18" y="40.64" size="1.778" layer="95" rot="MR0"/>
 <pinref part="D2" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="SD_3V3" class="0">
+<segment>
+<pinref part="SD" gate="G$1" pin="VCC"/>
+<wire x1="43.18" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
+<label x="33.02" y="33.02" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="Q3" gate="G$1" pin="S"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="12.7" y1="20.32" x2="12.7" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
