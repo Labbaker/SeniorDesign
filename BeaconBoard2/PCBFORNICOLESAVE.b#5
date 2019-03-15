@@ -1334,10 +1334,6 @@
 <attribute name="VALUE" x="0.3175" y="-9.906" size="0.6096" layer="27" align="center"/>
 </element>
 <element name="SD" library="Connectors" package="USD,FRONT" value="MICROSDFRONT" x="0" y="-29.845" smashed="yes" rot="R180"/>
-<element name="R2" library="Resistors" package="0603" value="10k" x="-13.97" y="-31.115" smashed="yes" rot="R180">
-<attribute name="NAME" x="-13.97" y="-32.385" size="1.016" layer="25" rot="R180" align="center"/>
-<attribute name="VALUE" x="-13.97" y="-29.845" size="1.016" layer="27" rot="R180" align="center"/>
-</element>
 <element name="D2" library="Diodes" package="1206" value="" x="-8.89" y="-33.02" smashed="yes" rot="R270">
 <attribute name="NAME" x="-7.366" y="-33.02" size="0.8128" layer="25" rot="R270" align="center"/>
 </element>
@@ -2024,10 +2020,11 @@
 <contactref element="SD" pad="S2"/>
 <contactref element="SD" pad="S1"/>
 <contactref element="SD" pad="6"/>
-<contactref element="R2" pad="2"/>
 <wire x1="-10.16" y1="1.3335" x2="-9.8265" y2="1" width="0.254" layer="1"/>
 <wire x1="-9.8265" y1="1" x2="-8" y2="1" width="0.254" layer="1"/>
 <wire x1="11.43" y1="32.15" x2="11.43" y2="33.17875" width="0.254" layer="1"/>
+<wire x1="2.54" y1="-23.685" x2="2.5" y2="-23.645" width="0.254" layer="1"/>
+<wire x1="-3" y1="-23.645" x2="2.5" y2="-23.645" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BT_TX">
 <contactref element="U1" pad="12"/>
@@ -2496,8 +2493,9 @@
 <wire x1="-10.795" y1="-7.14375" x2="-10.795" y2="-13.17625" width="0.3048" layer="1"/>
 <wire x1="-10.795" y1="-13.17625" x2="-10.31875" y2="-13.6525" width="0.3048" layer="1"/>
 <via x="-10.31875" y="-13.6525" extent="1-16" drill="0.381"/>
-<wire x1="-10.31875" y1="-13.6525" x2="-3.478696875" y2="-20.492553125" width="0.3048" layer="16"/>
-<wire x1="-3.478696875" y1="-20.492553125" x2="-3.33375" y2="-33.9725" width="0.3048" layer="16"/>
+<wire x1="-10.31875" y1="-13.6525" x2="-4.7625" y2="-19.20875" width="0.3048" layer="16"/>
+<wire x1="-4.617553125" y1="-32.688696875" x2="-3.33375" y2="-33.9725" width="0.3048" layer="16"/>
+<wire x1="-4.617553125" y1="-32.688696875" x2="-4.7625" y2="-19.20875" width="0.3048" layer="16"/>
 </signal>
 <signal name="DBG_RX">
 <contactref element="U1" pad="2"/>
@@ -2938,13 +2936,13 @@
 </signal>
 <signal name="SD_3V3">
 <contactref element="SD" pad="4"/>
-</signal>
-<signal name="N$1">
 <contactref element="Q3" pad="2"/>
-<contactref element="R2" pad="1"/>
-<wire x1="-14.14" y1="-34.61" x2="-13.26" y2="-33.73" width="0.254" layer="1"/>
-<wire x1="-13.26" y1="-33.73" x2="-13.081" y2="-33.551" width="0.254" layer="1"/>
-<wire x1="-13.081" y1="-33.551" x2="-13.081" y2="-31.115" width="0.254" layer="1"/>
+<wire x1="-9.52425" y1="-28.3972" x2="-2.9972" y2="-28.3972" width="0.254" layer="1"/>
+<wire x1="-9.7028" y1="-28.57575" x2="-9.52425" y2="-28.3972" width="0.254" layer="1"/>
+<wire x1="-14.14" y1="-34.61" x2="-9.7028" y2="-30.1728" width="0.254" layer="1"/>
+<wire x1="-9.7028" y1="-30.1728" x2="-9.7028" y2="-28.57575" width="0.254" layer="1"/>
+<wire x1="-2.9972" y1="-28.3972" x2="0.3" y2="-25.1" width="0.254" layer="1"/>
+<wire x1="0.3" y1="-25.1" x2="0.3" y2="-23.645" width="0.254" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

@@ -6717,6 +6717,8 @@ Logic Level, PowerTrench MOSFET</description>
 <part name="R25" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 <part name="SOL1" library="Connectors" deviceset="PINHD-1X2" device="/90"/>
 <part name="Q3" library="FDN340P" deviceset="FDN340P" device=""/>
+<part name="D1" library="Diodes" deviceset="LED" device="1206"/>
+<part name="R2" library="Resistors" deviceset="RES" device="0603" value="1k"/>
 </parts>
 <sheets>
 <sheet>
@@ -8210,6 +8212,14 @@ Logic Level, PowerTrench MOSFET</description>
 <attribute name="VALUE" x="15.24135" y="22.85865" size="1.778940625" layer="96"/>
 <attribute name="NAME" x="15.2401" y="25.4" size="1.77806875" layer="95"/>
 </instance>
+<instance part="D1" gate="G$1" x="12.7" y="15.24" smashed="yes">
+<attribute name="NAME" x="15.24" y="16.51" size="1.778" layer="95" rot="R90" align="center"/>
+<attribute name="VALUE" x="17.78" y="16.51" size="1.778" layer="96" rot="R90" align="center"/>
+</instance>
+<instance part="R2" gate="G$1" x="12.7" y="7.62" smashed="yes" rot="R180">
+<attribute name="NAME" x="14.605" y="7.62" size="1.016" layer="95" rot="R270" align="center"/>
+<attribute name="VALUE" x="10.795" y="7.62" size="1.016" layer="96" rot="R270" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8267,6 +8277,11 @@ Logic Level, PowerTrench MOSFET</description>
 <wire x1="43.18" y1="30.48" x2="27.94" y2="30.48" width="0.1524" layer="91"/>
 <label x="38.1" y="30.48" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="12.7" y1="5.08" x2="12.7" y2="0" width="0.1524" layer="91"/>
+<label x="7.62" y="0" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="N$4" class="0">
 <segment>
@@ -8292,6 +8307,15 @@ Logic Level, PowerTrench MOSFET</description>
 <wire x1="12.7" y1="20.32" x2="12.7" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="17.78" x2="25.4" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="17.78" x2="25.4" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="D1" gate="G$1" pin="A"/>
+<junction x="12.7" y="17.78"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="D1" gate="G$1" pin="C"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="12.7" y1="12.7" x2="12.7" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

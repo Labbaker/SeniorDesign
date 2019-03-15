@@ -1662,15 +1662,22 @@
 <attribute name="NAME" x="-31.115" y="31.75" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-23.495" y="31.75" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="Q3" library="FDN340P" package="SSOT-3" value="FDN340P" x="-15.24" y="-35.56" smashed="yes" rot="R90">
-<attribute name="AVAILABILITY" value="Unavailable" x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" Die Assymertrical For Fdc6329l " x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="MICROSS/On Semiconductor" x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="FDN340P" x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="-16.510309375" y="-34.289690625" size="1.016240625" layer="25" ratio="18" rot="R90"/>
-<attribute name="PACKAGE" value="TO-236-3 Micross" x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PRICE" value="None" x="-15.24" y="-35.56" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="-12.058709375" y="-37.46876875" size="0.814409375" layer="27" ratio="10" rot="R90"/>
+<element name="Q3" library="FDN340P" package="SSOT-3" value="FDN340P" x="-13.97" y="-30.48" smashed="yes" rot="R90">
+<attribute name="AVAILABILITY" value="Unavailable" x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" Die Assymertrical For Fdc6329l " x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="MICROSS/On Semiconductor" x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="FDN340P" x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="-15.240309375" y="-29.209690625" size="1.016240625" layer="25" ratio="18" rot="R90"/>
+<attribute name="PACKAGE" value="TO-236-3 Micross" x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PRICE" value="None" x="-13.97" y="-30.48" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="-10.788709375" y="-32.38876875" size="0.814409375" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="D1" library="Diodes" package="1206" value="" x="-15.24" y="-35.56" smashed="yes" rot="R180">
+<attribute name="NAME" x="-15.24" y="-37.084" size="0.8128" layer="25" rot="R180" align="center"/>
+</element>
+<element name="R2" library="Resistors" package="0603" value="1k" x="-31.75" y="-36.195" smashed="yes">
+<attribute name="NAME" x="-31.75" y="-34.925" size="1.016" layer="25" align="center"/>
+<attribute name="VALUE" x="-31.75" y="-37.465" size="1.016" layer="27" align="center"/>
 </element>
 </elements>
 <signals>
@@ -1866,9 +1873,8 @@
 <via x="-8.89" y="-17.78" extent="1-16" drill="0.35"/>
 <wire x1="-5.21" y1="-14.2875" x2="-8.7025" y2="-17.78" width="0.254" layer="1"/>
 <wire x1="-8.89" y1="-17.78" x2="-8.7025" y2="-17.78" width="0.254" layer="1"/>
-<wire x1="-16.34" y1="-30.31" x2="-16.34" y2="-35.56" width="0.254" layer="1"/>
-<wire x1="-15.621" y1="-29.591" x2="-16.34" y2="-30.31" width="0.254" layer="1"/>
-<wire x1="-15.621" y1="-29.591" x2="-15.621" y2="-27.94" width="0.254" layer="1"/>
+<wire x1="-15.621" y1="-27.94" x2="-15.621" y2="-29.929" width="0.254" layer="1"/>
+<wire x1="-15.07" y1="-30.48" x2="-15.621" y2="-29.929" width="0.254" layer="1"/>
 <wire x1="-15.621" y1="-27.94" x2="-9.4615" y2="-27.94" width="0.254" layer="1"/>
 <wire x1="8.41375" y1="-7.77875" x2="6.0325" y2="-5.3975" width="1.651" layer="16"/>
 <wire x1="6.0325" y1="-5.3975" x2="6.0325" y2="-1" width="1.651" layer="16"/>
@@ -2031,6 +2037,11 @@
 <wire x1="2.5" y1="-25.995" x2="2.54" y2="-26.035" width="0.254" layer="1"/>
 <via x="2.54" y="-26.035" extent="1-16" drill="0.35"/>
 <wire x1="-3.175" y1="-26.035" x2="2.54" y2="-26.035" width="0.254" layer="16"/>
+<contactref element="R2" pad="1"/>
+<wire x1="-35" y1="-29.5" x2="-35" y2="-32.5082875" width="0.254" layer="1"/>
+<wire x1="-33.9452" y1="-34.8888" x2="-32.639" y2="-36.195" width="0.254" layer="1"/>
+<wire x1="-35" y1="-32.5082875" x2="-33.9452" y2="-33.5630875" width="0.254" layer="1"/>
+<wire x1="-33.9452" y1="-33.5630875" x2="-33.9452" y2="-34.8888" width="0.254" layer="1"/>
 </signal>
 <signal name="BT_TX">
 <contactref element="U1" pad="12"/>
@@ -2484,9 +2495,8 @@
 <wire x1="-10.795" y1="-14.9225" x2="-10.795" y2="-33.02" width="0.3048" layer="16"/>
 <wire x1="-10.795" y1="-33.02" x2="-11.43" y2="-33.655" width="0.3048" layer="16"/>
 <via x="-11.43" y="-33.655" extent="1-16" drill="0.35"/>
-<wire x1="-11.43" y1="-33.655" x2="-11.43" y2="-34.29" width="0.254" layer="1"/>
-<wire x1="-11.43" y1="-34.29" x2="-13.65" y2="-36.51" width="0.254" layer="1"/>
-<wire x1="-14.14" y1="-36.51" x2="-13.65" y2="-36.51" width="0.254" layer="1"/>
+<wire x1="-12.87" y1="-31.43" x2="-12.87" y2="-32.215" width="0.254" layer="1"/>
+<wire x1="-11.43" y1="-33.655" x2="-12.87" y2="-32.215" width="0.254" layer="1"/>
 </signal>
 <signal name="SD_CD">
 <contactref element="U1" pad="24"/>
@@ -2944,11 +2954,21 @@
 <contactref element="SD" pad="4"/>
 <contactref element="Q3" pad="2"/>
 <wire x1="-9.52425" y1="-28.3972" x2="-2.9972" y2="-28.3972" width="0.254" layer="1"/>
-<wire x1="-9.7028" y1="-28.57575" x2="-9.52425" y2="-28.3972" width="0.254" layer="1"/>
-<wire x1="-14.14" y1="-34.61" x2="-9.7028" y2="-30.1728" width="0.254" layer="1"/>
-<wire x1="-9.7028" y1="-30.1728" x2="-9.7028" y2="-28.57575" width="0.254" layer="1"/>
+<wire x1="-9.52425" y1="-28.3972" x2="-10.65705" y2="-29.53" width="0.254" layer="1"/>
+<wire x1="-12.87" y1="-29.53" x2="-10.65705" y2="-29.53" width="0.254" layer="1"/>
 <wire x1="-2.9972" y1="-28.3972" x2="0.3" y2="-25.1" width="0.254" layer="1"/>
 <wire x1="0.3" y1="-25.1" x2="0.3" y2="-23.645" width="0.254" layer="1"/>
+<contactref element="D1" pad="1"/>
+<wire x1="-13.818" y1="-35.56" x2="-12.5452" y2="-34.2872" width="0.254" layer="1"/>
+<wire x1="-12.5452" y1="-34.2872" x2="-11.16813125" y2="-34.2872" width="0.254" layer="1"/>
+<wire x1="-11.16813125" y1="-34.2872" x2="-10.65705" y2="-33.77611875" width="0.254" layer="1"/>
+<wire x1="-10.65705" y1="-33.77611875" x2="-10.65705" y2="-29.53" width="0.254" layer="1"/>
+</signal>
+<signal name="N$1">
+<contactref element="D1" pad="2"/>
+<contactref element="R2" pad="2"/>
+<wire x1="-30.861" y1="-36.195" x2="-17.297" y2="-36.195" width="0.254" layer="1"/>
+<wire x1="-17.297" y1="-36.195" x2="-16.662" y2="-35.56" width="0.254" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
