@@ -72,6 +72,7 @@
     #define BEACON_RSSI_1M             "-54"
     #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
     #define MODE_LED_BEHAVIOUR          "MODE"
+    #define beaconid                    1
 /*=========================================================================*/
 
 // Create the bluefruit object, either software serial...uncomment these lines
@@ -290,11 +291,32 @@ void loop(void)
   }
   // Some data was found, its in the buffer
   Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
-  if(ble.buffer[0] == "A" & ble.buffer[1] == "T"){
+  if(ble.buffer[0] == 'A' && ble.buffer[1] == 'T'){
+    char messageAlert[200] = {'~'};
+    //find 5th occurance of comma to break
+    int count = 0, i, j;
+    for(i = 0; i < 200; i++){
+      //Serial.println(messageAlert);
+      messageAlert[i] = ble.buffer[i];
+      if(ble.buffer[i] == ','){
+        count++;
+      }
+      if(count == 5){
+        break;
+      }
+    }
+    //Serial.println(messageAlert);
+    messageAlert[i+1] = 'B';
+    messageAlert[i+2] = 'I';
+    messageAlert[i+3] = ',';
+    Serial.println(beaconid);
+    messageAlert[i+4] = beaconid + '0';
+    Serial.println(messageAlert);
+    memcpy(messageAlert[i+5], ble.buffer[i+2], 200);
     //pass to main station
   }
-  else if(ble.buffer[0] == "G" & ble.buffer[1] == "P"){
-    
+  else if(ble.buffer[0] == 'G' & ble.buffer[1] == 'P'){
+    char messageGPS[200];
   }
   else{
     Serial.print("Unknown Command Received");
