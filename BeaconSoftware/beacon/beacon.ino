@@ -287,25 +287,22 @@ void loop(void)
   bool bleFlag = false;
   int p;
   int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
-  for(p = 0; p < bbuffSize; p++){
-    if(ble.buffer[p] == '~'){
-      bleFlag = true;
-      break;
-    }
-    else{
-      bleFlag = false;
-    }
+  if(ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~'){
+    bleFlag = true;
+  }
+  else{
+    bleFlag = false;
   }
   if(bleFlag){
-    if(ble.buffer[0] == 'A' && ble.buffer[1] == 'T'){
-      String messageAlert = ((String)ble.buffer).substring(p) + ",BI," + (String)beaconid + "~";
+    if(ble.buffer[1] == 'A' && ble.buffer[2] == 'T'){
+      String messageAlert = ((String)ble.buffer).substring(buffSize - 1) + ",BI," + (String)beaconid + "~";
       Serial.print("[Send] ");
       Serial.println(messageAlert);
   
       //TODO: pass to main station
     }
-    else if(ble.buffer[0] == 'G' & ble.buffer[1] == 'P'){
-      String messageGPS = "GP,LT," + (String)beaconLat + GPS.lat + ",LN," + (String)beaconLong + GPS.lon + "~";
+    else if(ble.buffer[1] == 'G' & ble.buffer[2] == 'P'){
+      String messageGPS = "#GP,LT," + (String)beaconLat + ",LN," + (String)beaconLong + "~";
       Serial.println(messageGPS);
       ble.print("AT+BLEUARTTX=");
       ble.println(messageGPS);
@@ -323,17 +320,14 @@ void loop(void)
 
   bool xBeeFlag = false;
   int q;
-  int xbuffSize = sizeof(xBeeBuff)/sizeof(xBeeBuff);
-  for(q = 0; q < xbuffSize; q++){
-    if(xBeeBuff[q] == '~'){
-      xBeeFlag = true;
-      break;
-    }
-    else{
-      xBeeFlag = false;
-    }
+  int xbuffSize = sizeof(xBeeBuff)/sizeof(xBeeBuff[0]);
+  if(xBeeBuff[0] == '#' && xBeeBuff[xbuffSize - 1] == '~'){
+    xBeeFlag = true;
   }
-
+  else{
+    xBeeFlag = false;
+  }
+  
   if(xBeeFlag){
     if(xBeeBuff[0] == 'A' && xBeeBuff[1] == 'T'){
       String messageMainAck = xBeeBuff.substring(q);
@@ -341,8 +335,8 @@ void loop(void)
       ble.println(messageMainAck);
     }
     else if(xBeeBuff[0] == 'P' && xBeeBuff[1] == 'P'){
-      String messageBeaconAck = "PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + GPS.lat + ",LN," + (String)beaconLong + GPS.lon
-      + ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
+      String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong + 
+      ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
       Serial3.println(messageBeaconAck);
     }
     else{
