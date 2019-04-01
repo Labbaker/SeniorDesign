@@ -219,6 +219,9 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
+  double beaconLat;
+  double beaconLong;
+  int beaconTime[7];
   // read data from the GPS in the 'main loop'
   while(Serial1.available()){
     char c = GPS.read();
@@ -231,7 +234,7 @@ void loop(void)
       // a tricky thing here is if we print the NMEA sentence, or data
       // we end up not listening and catching other sentences!
       // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
-      Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
+      //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
       if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
         return; // we can fail to parse a sentence in which case we should just wait for another
     }
@@ -261,28 +264,18 @@ void loop(void)
       Serial.print("Angle: "); Serial.println(GPS.angle);
       Serial.print("Altitude: "); Serial.println(GPS.altitude);
       Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
+      beaconLat = GPS.latitude;
+      beaconLong = GPS.longitude;
+      beaconTime[0] = GPS.hour;
+      beaconTime[1] = GPS.minute;
+      beaconTime[2] = GPS.seconds;
+      beaconTime[3] = GPS.milliseconds;
+      beaconTime[4] = GPS.month;
+      beaconTime[5] = GPS.day;
+      beaconTime[6] = GPS.year;
     }
   }
 
-  // Check for user input
-  char inputs[BUFSIZE+1];
-
-  if ( getUserInput(inputs, BUFSIZE) )
-  {
-    // Send characters to Bluefruit
-    Serial.print("[Send] ");
-    Serial.println(inputs);
-
-    ble.print("AT+BLEUARTTX=");
-    ble.println(inputs);
-
-    // check response stastus
-    if (! ble.waitForOK() ) {
-      Serial.println(F("Failed to send?"));
-    }
-  }
-
-  // Check for incoming characters from Bluefruit
   ble.println("AT+BLEUARTRX");
   ble.readline();
   if (strcmp(ble.buffer, "OK") == 0) {
@@ -291,37 +284,67 @@ void loop(void)
   }
   // Some data was found, its in the buffer
   Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
-  if(ble.buffer[0] == 'A' && ble.buffer[1] == 'T'){
-    char messageAlert[200] = {'~'};
-    //find 5th occurance of comma to break
-    int count = 0, i, j;
-    for(i = 0; i < 200; i++){
-      //Serial.println(messageAlert);
-      messageAlert[i] = ble.buffer[i];
-      if(ble.buffer[i] == ','){
-        count++;
-      }
-      if(count == 5){
-        break;
-      }
+  bool bleFlag = false;
+  int p;
+  int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
+  for(p = 0; p < bbuffSize; p++){
+    if(ble.buffer[p] == '~'){
+      bleFlag = true;
+      break;
     }
-    //Serial.println(messageAlert);
-    messageAlert[i+1] = 'B';
-    messageAlert[i+2] = 'I';
-    messageAlert[i+3] = ',';
-    Serial.println(beaconid);
-    messageAlert[i+4] = beaconid + '0';
-    Serial.println(messageAlert);
-    memcpy(messageAlert[i+5], ble.buffer[i+2], 200);
-    //pass to main station
+    else{
+      bleFlag = false;
+    }
   }
-  else if(ble.buffer[0] == 'G' & ble.buffer[1] == 'P'){
-    char messageGPS[200];
+  if(bleFlag){
+    if(ble.buffer[0] == 'A' && ble.buffer[1] == 'T'){
+      String messageAlert = ((String)ble.buffer).substring(p) + ",BI," + (String)beaconid + "~";
+      Serial.print("[Send] ");
+      Serial.println(messageAlert);
+  
+      //TODO: pass to main station
+    }
+    else if(ble.buffer[0] == 'G' & ble.buffer[1] == 'P'){
+      String messageGPS = "GP,LT," + (String)beaconLat + GPS.lat + ",LN," + (String)beaconLong + GPS.lon + "~";
+      Serial.println(messageGPS);
+      ble.print("AT+BLEUARTTX=");
+      ble.println(messageGPS);
+    }
+    else{
+      Serial.print("Unknown Command Received");
+    }
   }
-  else{
-    Serial.print("Unknown Command Received");
-  }
+  
   ble.waitForOK();
+  String xBeeBuff = "";
+  while(Serial3.available()){
+   xBeeBuff  = Serial3.readString();
+  }
+
+  bool xBeeFlag = false;
+  int q;
+  int xbuffSize = sizeof(xBeeBuff)/sizeof(xBeeBuff);
+  for(q = 0; q < xbuffSize; q++){
+    if(xBeeBuff[q] == '~'){
+      xBeeFlag = true;
+      break;
+    }
+    else{
+      xBeeFlag = false;
+    }
+  }
+
+  if(xBeeFlag){
+    if(xBeeBuff[0] == 'A' && xBeeBuff[1] == 'T'){
+      
+    }
+    else if(xBeeBuff[0] == 'P' && xBeeBuff[1] == 'P'){
+      
+    }
+    else{
+      Serial.println("invalid Xbee message");
+    }
+  }
 }
 
 /**************************************************************************/
