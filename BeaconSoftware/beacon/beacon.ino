@@ -336,10 +336,14 @@ void loop(void)
 
   if(xBeeFlag){
     if(xBeeBuff[0] == 'A' && xBeeBuff[1] == 'T'){
-      
+      String messageMainAck = xBeeBuff.substring(q);
+      ble.print("AT+BLEUARTTX=");
+      ble.println(messageMainAck);
     }
     else if(xBeeBuff[0] == 'P' && xBeeBuff[1] == 'P'){
-      
+      String messageBeaconAck = "PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + GPS.lat + ",LN," + (String)beaconLong + GPS.lon
+      + ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
+      Serial3.println(messageBeaconAck);
     }
     else{
       Serial.println("invalid Xbee message");

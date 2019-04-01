@@ -1,10 +1,10 @@
 #beacon response to main station message format:
-#PG,ID,0,LT,0,LN,0,TS,0
+#PG,ID,0,LT,0,LN,0,TH,0,TM,0,TS,0,TF,0,TO,TD,TY
 PG: this is a ping
 ID: beacon id
 LT: latitude
 LN: longitude
-TS: time the ping response was sent
+TH-TY: time in: hours,minutes,seconds,milliseconds,month,day,year
 
 #beacon passing alert to main station
 #Alert, concat'd id, deviceid, beaconid, severity, time sent, latitude, longitude
