@@ -1,4 +1,4 @@
-#beacon response to main station message format:
+beacon response to main station message format:
 #PG,ID,0,LT,0,LN,0,TH,0,TM,0,TS,0,TF,0,TO,TD,TY
 PG: this is a ping
 ID: beacon id
@@ -6,18 +6,18 @@ LT: latitude
 LN: longitude
 TH-TY: time in: hours,minutes,seconds,milliseconds,month,day,year
 
-#beacon passing alert to main station
-#Alert, concat'd id, deviceid, beaconid, severity, time sent, latitude, longitude
+beacon passing alert to main station
+Alert, concat'd id, deviceid, beaconid, severity, time sent, latitude, longitude
 #AT,ID,0,DI,0,SV,0,ST,0,TS,0,LT,0,LN,0,BI,0
 
-#main station response to beacon, to be passed to mobile app
+main station response to beacon, to be passed to mobile app
 #AT,ID,122437465660,TS,0,MS,0
 Alert, id, time sent form main station, note
 
-#mobile app message to beacon
-#Alert, concat'd id, deviceid, severity, time sent, latitude, longitude
+mobile app message to beacon
+Alert, concat'd id, deviceid, severity, time sent, latitude, longitude
 #AT,ID,0,DI,0,SV,0,ST,0,TS,0,LT,0,LN,0
 
-#beacon back tp mobile app with gps
+beacon back to mobile app with gps
 #GP,LT,0,LN,0
 
