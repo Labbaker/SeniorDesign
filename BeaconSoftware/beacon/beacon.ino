@@ -29,7 +29,7 @@
     APPLICATION SETTINGS
 
     FACTORYRESET_ENABLE     Perform a factory reset when running this sketch
-    
+   
                             Enabling this will put your Bluefruit LE module
                             in a 'known good' state and clear any config
                             data set in previous sketches or projects, so
@@ -121,7 +121,7 @@ void setup(void)
   Serial.begin(115200);
 
   Serial.println("Adafruit GPS library basic test!");
-     
+
   // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
   GPS.begin(9600);
   // uncomment this line to turn on RMC (recommended minimum) and GGA (fix data) including altitude
@@ -134,15 +134,15 @@ void setup(void)
   GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // 1 Hz update rate
   // For the parsing code to work nicely and have time to sort thru the data, and
   // print it out we don't suggest using anything higher than 1 Hz
-     
+
   // Request updates on antenna status, comment out to keep quiet
   GPS.sendCommand(PGCMD_ANTENNA);
 
   delay(1000);
-  
+
   // Ask for firmware version
   GPSSerial.println(PMTK_Q_RELEASE);
-  
+
   Serial.println(F("Adafruit Bluefruit Beacon Example"));
   Serial.println(F("---------------------------------"));
 
@@ -240,7 +240,7 @@ void loop(void)
     }
   // if millis() or timer wraps around, we'll just reset it
   if (timer > millis()) timer = millis();
-     
+
   // approximately every 2 seconds or so, print out the current stats
   if (millis() - timer > 2000) {
     timer = millis(); // reset the timer
@@ -298,7 +298,7 @@ void loop(void)
       String messageAlert = ((String)ble.buffer).substring(buffSize - 1) + ",BI," + (String)beaconid + "~";
       Serial.print("[Send] ");
       Serial.println(messageAlert);
-  
+
       //TODO: pass to main station
     }
     else if(ble.buffer[1] == 'G' & ble.buffer[2] == 'P'){
@@ -311,7 +311,7 @@ void loop(void)
       Serial.print("Unknown Command Received");
     }
   }
-  
+
   ble.waitForOK();
   String xBeeBuff = "";
   while(Serial3.available()){
@@ -327,15 +327,15 @@ void loop(void)
   else{
     xBeeFlag = false;
   }
-  
+
   if(xBeeFlag){
-    if(xBeeBuff[0] == 'A' && xBeeBuff[1] == 'T'){
+    if(xBeeBuff[1] == 'A' && xBeeBuff[2] == 'T'){
       String messageMainAck = xBeeBuff.substring(q);
       ble.print("AT+BLEUARTTX=");
       ble.println(messageMainAck);
     }
-    else if(xBeeBuff[0] == 'P' && xBeeBuff[1] == 'P'){
-      String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong + 
+    else if(xBeeBuff[1] == 'P' && xBeeBuff[2] == 'P'){
+      String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong +
       ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
       Serial3.println(messageBeaconAck);
     }
