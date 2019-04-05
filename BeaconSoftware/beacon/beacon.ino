@@ -219,9 +219,9 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  double beaconLat;
-  double beaconLong;
-  int beaconTime[7];
+  double beaconLat = 32.9;
+  double beaconLong = -110.118;
+  int beaconTime[7] = {5,15,00, 01, 4, 2, 2019};
   // read data from the GPS in the 'main loop'
   while(Serial1.available()){
     char c = GPS.read();
@@ -286,7 +286,10 @@ void loop(void)
   Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
   bool bleFlag = false;
   int p;
-  int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
+  //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
+  unsigned int bbuffSize = ((String)ble.buffer).length();
+  Serial.print(ble.buffer[1]);
+  Serial.println((String)bbuffSize);
   if(ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~'){
     bleFlag = true;
   }
@@ -294,10 +297,13 @@ void loop(void)
     bleFlag = false;
   }
   if(bleFlag){
+    //Serial.print(ble.buffer[1]);
+    //Serial.println(ble.buffer[2]);
     if(ble.buffer[1] == 'A' && ble.buffer[2] == 'T'){
-      String messageAlert = ((String)ble.buffer).substring(buffSize - 1) + ",BI," + (String)beaconid + "~";
+      //Serial.println(((String)ble.buffer).substring(bbuffSize - 1));
+      String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
       Serial.print("[Send] ");
-      Serial.println(messageAlert);
+      Serial3.println(messageAlert);
 
       //TODO: pass to main station
     }
