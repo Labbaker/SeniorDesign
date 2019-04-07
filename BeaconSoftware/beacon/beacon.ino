@@ -1,15 +1,15 @@
 /*********************************************************************
- This is an example for our nRF51822 based Bluefruit LE modules
+  This is an example for our nRF51822 based Bluefruit LE modules
 
- Pick one up today in the adafruit shop!
+  Pick one up today in the adafruit shop!
 
- Adafruit invests time and resources providing this open source code,
- please support Adafruit and open-source hardware by purchasing
- products from Adafruit!
+  Adafruit invests time and resources providing this open source code,
+  please support Adafruit and open-source hardware by purchasing
+  products from Adafruit!
 
- MIT license, check LICENSE for more information
- All text above, and the splash screen below must be included in
- any redistribution
+  MIT license, check LICENSE for more information
+  All text above, and the splash screen below must be included in
+  any redistribution
 *********************************************************************/
 
 #include <Arduino.h>
@@ -22,30 +22,30 @@
 #include "BluefruitConfig.h"
 
 #if SOFTWARE_SERIAL_AVAILABLE
-  #include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
 #endif
 
 /*=========================================================================
     APPLICATION SETTINGS
 
-    FACTORYRESET_ENABLE     Perform a factory reset when running this sketch
-   
-                            Enabling this will put your Bluefruit LE module
+      FACTORYRESET_ENABLE     Perform a factory reset when running this sketch
+     
+                              Enabling this will put your Bluefruit LE module
                             in a 'known good' state and clear any config
                             data set in previous sketches or projects, so
-                            running this at least once is a good idea.
-   
-                            When deploying your project, however, you will
+                              running this at least once is a good idea.
+     
+                              When deploying your project, however, you will
                             want to disable factory reset by setting this
                             value to 0.  If you are making changes to your
-                            Bluefruit LE device via AT commands, and those
+                              Bluefruit LE device via AT commands, and those
                             changes aren't persisting across resets, this
                             is the reason why.  Factory reset will erase
                             the non-volatile memory where config data is
                             stored, setting it back to factory default
                             values.
-       
-                            Some sketches that require you to bond to a
+         
+                              Some sketches that require you to bond to a
                             central device (HID mouse, keyboard, etc.)
                             won't work at all with this feature enabled
                             since the factory reset will clear all of the
@@ -60,26 +60,26 @@
     BEACON_MINOR            16-bit minor nunber
     BEACON_RSSI_1M
     -----------------------------------------------------------------------*/
-    #define FACTORYRESET_ENABLE      0
+#define FACTORYRESET_ENABLE      0
 
-    #define MANUFACTURER_APPLE         "0x004C"
-    #define MANUFACTURER_NORDIC        "0x0059"
+#define MANUFACTURER_APPLE         "0x004C"
+#define MANUFACTURER_NORDIC        "0x0059"
 
-    #define BEACON_MANUFACTURER_ID     MANUFACTURER_APPLE
-    #define BEACON_UUID                "01-12-23-34-45-56-67-78-89-9A-AB-BC-CD-DE-EF-F0"
-    #define BEACON_MAJOR               "0x0000"
-    #define BEACON_MINOR               "0x0000"
-    #define BEACON_RSSI_1M             "-54"
-    #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
-    #define MODE_LED_BEHAVIOUR          "MODE"
-    #define beaconid                    1
+#define BEACON_MANUFACTURER_ID     MANUFACTURER_APPLE
+#define BEACON_UUID                "01-12-23-34-45-56-67-78-89-9A-AB-BC-CD-DE-EF-F0"
+#define BEACON_MAJOR               "0x0000"
+#define BEACON_MINOR               "0x0000"
+#define BEACON_RSSI_1M             "-54"
+#define MINIMUM_FIRMWARE_VERSION    "0.6.6"
+#define MODE_LED_BEHAVIOUR          "MODE"
+#define beaconid                    1
 /*=========================================================================*/
 
 // Create the bluefruit object, either software serial...uncomment these lines
 /*
-SoftwareSerial bluefruitSS = SoftwareSerial(BLUEFRUIT_SWUART_TXD_PIN, BLUEFRUIT_SWUART_RXD_PIN);
+  SoftwareSerial bluefruitSS = SoftwareSerial(BLUEFRUIT_SWUART_TXD_PIN, BLUEFRUIT_SWUART_RXD_PIN);
 
-Adafruit_BluefruitLE_UART ble(bluefruitSS, BLUEFRUIT_UART_MODE_PIN,
+  Adafruit_BluefruitLE_UART ble(bluefruitSS, BLUEFRUIT_UART_MODE_PIN,
                       BLUEFRUIT_UART_CTS_PIN, BLUEFRUIT_UART_RTS_PIN);
 */
 
@@ -118,6 +118,7 @@ void setup(void)
   while (!Serial);  // required for Flora & Micro
   delay(500);
 
+  Serial3.begin(38400);
   Serial.begin(115200);
 
   Serial.println("Adafruit GPS library basic test!");
@@ -159,7 +160,7 @@ void setup(void)
   {
     /* Perform a factory reset to make sure everything is in a known state */
     Serial.println(F("Performing a factory reset: "));
-    if ( ! ble.factoryReset() ){
+    if ( ! ble.factoryReset() ) {
       error(F("Couldn't factory reset"));
     }
   }
@@ -198,7 +199,7 @@ void setup(void)
 
   /* Wait for connection */
   while (! ble.isConnected()) {
-      delay(500);
+    delay(500);
   }
 
   // LED Activity command is only supported from 0.6.6
@@ -219,51 +220,55 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  double beaconLat = 32.9;
-  double beaconLong = -110.118;
-  int beaconTime[7] = {5,15,00, 01, 4, 2, 2019};
+  double beaconLat;
+  double beaconLong;
+  int beaconTime[7];
   // read data from the GPS in the 'main loop'
-  while(Serial1.available()){
+  while (Serial1.available()) {
     char c = GPS.read();
     // if you want to debug, this is a good time to do it!
     if (GPSECHO)
       if (c) Serial.print(c);
   }
-    // if a sentence is received, we can check the checksum, parse it...
-    if (GPS.newNMEAreceived()) {
-      // a tricky thing here is if we print the NMEA sentence, or data
-      // we end up not listening and catching other sentences!
-      // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
-      //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
-      if (!GPS.parse(GPS.lastNMEA())) // this also sets the newNMEAreceived() flag to false
-        return; // we can fail to parse a sentence in which case we should just wait for another
+  // if a sentence is received, we can check the checksum, parse it...
+  if (GPS.newNMEAreceived()) {
+    // a tricky thing here is if we print the NMEA sentence, or data
+    // we end up not listening and catching other sentences!
+    // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
+    //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
+    if (!GPS.parse(GPS.lastNMEA())) { // this also sets the newNMEAreceived() flag to false
+      Serial.println("GPS Parse Error");
+      return; // we can fail to parse a sentence in which case we should just wait for another
     }
+  }
   // if millis() or timer wraps around, we'll just reset it
-  if (timer > millis()) timer = millis();
+  if (timer > millis()) {
+    timer = millis();
+  }
 
   // approximately every 2 seconds or so, print out the current stats
   if (millis() - timer > 2000) {
     timer = millis(); // reset the timer
-    Serial.print("\nTime: ");
-    Serial.print(GPS.hour, DEC); Serial.print(':');
-    Serial.print(GPS.minute, DEC); Serial.print(':');
-    Serial.print(GPS.seconds, DEC); Serial.print('.');
-    Serial.println(GPS.milliseconds);
-    Serial.print("Date: ");
-    Serial.print(GPS.day, DEC); Serial.print('/');
-    Serial.print(GPS.month, DEC); Serial.print("/20");
-    Serial.println(GPS.year, DEC);
-    Serial.print("Fix: "); Serial.print((int)GPS.fix);
-    Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
+        Serial.print("\nTime: ");
+        Serial.print(GPS.hour, DEC); Serial.print(':');
+        Serial.print(GPS.minute, DEC); Serial.print(':');
+        Serial.print(GPS.seconds, DEC); Serial.print('.');
+        Serial.println(GPS.milliseconds);
+        Serial.print("Date: ");
+        Serial.print(GPS.day, DEC); Serial.print('/');
+        Serial.print(GPS.month, DEC); Serial.print("/20");
+        Serial.println(GPS.year, DEC);
+        Serial.print("Fix: "); Serial.print((int)GPS.fix);
+        Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
     if (GPS.fix) {
-      Serial.print("Location: ");
-      Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);
-      Serial.print(", ");
-      Serial.print(GPS.longitude, 4); Serial.println(GPS.lon);
-      Serial.print("Speed (knots): "); Serial.println(GPS.speed);
-      Serial.print("Angle: "); Serial.println(GPS.angle);
-      Serial.print("Altitude: "); Serial.println(GPS.altitude);
-      Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
+            Serial.print("Location: ");
+            Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);
+            Serial.print(", ");
+            Serial.print(GPS.longitude, 4); Serial.println(GPS.lon);
+            Serial.print("Speed (knots): "); Serial.println(GPS.speed);
+            Serial.print("Angle: "); Serial.println(GPS.angle);
+            Serial.print("Altitude: "); Serial.println(GPS.altitude);
+            Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
       beaconLat = GPS.latitude;
       beaconLong = GPS.longitude;
       beaconTime[0] = GPS.hour;
@@ -275,77 +280,75 @@ void loop(void)
       beaconTime[6] = GPS.year;
     }
   }
-
   ble.println("AT+BLEUARTRX");
   ble.readline();
   if (strcmp(ble.buffer, "OK") == 0) {
     // no data
-    return;
   }
-  // Some data was found, its in the buffer
-  Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
-  bool bleFlag = false;
-  int p;
-  //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
-  unsigned int bbuffSize = ((String)ble.buffer).length();
-  Serial.print(ble.buffer[1]);
-  Serial.println((String)bbuffSize);
-  if(ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~'){
-    bleFlag = true;
-  }
-  else{
-    bleFlag = false;
-  }
-  if(bleFlag){
-    //Serial.print(ble.buffer[1]);
-    //Serial.println(ble.buffer[2]);
-    if(ble.buffer[1] == 'A' && ble.buffer[2] == 'T'){
-      //Serial.println(((String)ble.buffer).substring(bbuffSize - 1));
-      String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
-      Serial.print("[Send] ");
-      Serial3.println(messageAlert);
+  else {
+    Serial.println("End BLE Stuff"); //DEBUG
+    // Some data was found, its in the buffer
+    Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
+    bool bleFlag = false;
+    //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
+    unsigned int bbuffSize = ((String)ble.buffer).length();
+    if (ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~') {
+      bleFlag = true;
+    }
+    else {
+      bleFlag = false;
+    }
+    if (bleFlag) {
+      //Serial.print(ble.buffer[1]);
+      //Serial.println(ble.buffer[2]);
+      if (ble.buffer[1] == 'A' && ble.buffer[2] == 'T') {
+        String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
+        Serial.print("[Send] ");
+        Serial3.println(messageAlert);
 
-      //TODO: pass to main station
-    }
-    else if(ble.buffer[1] == 'G' & ble.buffer[2] == 'P'){
-      String messageGPS = "#GP,LT," + (String)beaconLat + ",LN," + (String)beaconLong + "~";
-      Serial.println(messageGPS);
-      ble.print("AT+BLEUARTTX=");
-      ble.println(messageGPS);
-    }
-    else{
-      Serial.print("Unknown Command Received");
+        //TODO: pass to main station
+      }
+      else if (ble.buffer[1] == 'G' & ble.buffer[2] == 'P') {
+        String messageGPS = "#GP,LT," + (String)beaconLat + ",LN," + (String)beaconLong + "~";
+        Serial.println(messageGPS);
+        ble.print("AT+BLEUARTTX=");
+        ble.println(messageGPS);
+      }
+      else {
+        Serial.print("Unknown Command Received");
+      }
     }
   }
-
-  ble.waitForOK();
+  //ble.waitForOK();
   String xBeeBuff = "";
-  while(Serial3.available()){
-   xBeeBuff  = Serial3.readString();
+  while (Serial3.available()) {
+    Serial.println("inside while loop");
+    xBeeBuff  = Serial3.readString();
   }
-
   bool xBeeFlag = false;
-  int q;
-  int xbuffSize = sizeof(xBeeBuff)/sizeof(xBeeBuff[0]);
-  if(xBeeBuff[0] == '#' && xBeeBuff[xbuffSize - 1] == '~'){
+  unsigned int xbuffSize = ((String)xBeeBuff).length();
+  Serial.println(xBeeBuff);
+  Serial.println((String)xbuffSize);
+  if (xBeeBuff[0] == '#' && xBeeBuff[xbuffSize - 1] == '~') {
     xBeeFlag = true;
   }
-  else{
+  else {
     xBeeFlag = false;
   }
 
-  if(xBeeFlag){
-    if(xBeeBuff[1] == 'A' && xBeeBuff[2] == 'T'){
-      String messageMainAck = xBeeBuff.substring(q);
+  if (xBeeFlag) {
+    if (xBeeBuff[1] == 'A' && xBeeBuff[2] == 'T') {
+      String messageMainAck = xBeeBuff.substring(0, xbuffSize);
       ble.print("AT+BLEUARTTX=");
       ble.println(messageMainAck);
     }
-    else if(xBeeBuff[1] == 'P' && xBeeBuff[2] == 'P'){
-      String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong +
-      ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
+    else if (xBeeBuff[1] == 'P' && xBeeBuff[2] == 'G' && xbuffSize == 4) {
+      String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong + ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
+                             
+      Serial.println(messageBeaconAck);
       Serial3.println(messageBeaconAck);
     }
-    else{
+    else {
       Serial.println("invalid Xbee message");
     }
   }
@@ -362,17 +365,19 @@ bool getUserInput(char buffer[], uint8_t maxSize)
   TimeoutTimer timeout(100);
 
   memset(buffer, 0, maxSize);
-  while( (!Serial.available()) && !timeout.expired() ) { delay(1); }
+  while ( (!Serial.available()) && !timeout.expired() ) {
+    delay(1);
+  }
 
   if ( timeout.expired() ) return false;
 
   delay(2);
-  uint8_t count=0;
+  uint8_t count = 0;
   do
   {
-    count += Serial.readBytes(buffer+count, maxSize);
+    count += Serial.readBytes(buffer + count, maxSize);
     delay(2);
-  } while( (count < maxSize) && (Serial.available()) );
+  } while ( (count < maxSize) && (Serial.available()) );
 
   return true;
 }
