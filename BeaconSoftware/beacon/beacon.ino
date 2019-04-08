@@ -97,13 +97,19 @@ Adafruit_BluefruitLE_UART ble(BLUEFRUIT_HWSERIAL_NAME, BLUEFRUIT_UART_MODE_PIN);
 
 // A small helper
 void error(const __FlashStringHelper*err) {
-  Serial.println(err);
-  while (1);
+  while (1) {
+    Serial.println(err);
+    delay(5000);
+  }
 }
 
 #define GPSSerial Serial1
+#define XBEESerial Serial3
 Adafruit_GPS GPS(&GPSSerial);
 #define GPSECHO false
+double beaconLat;
+double beaconLong;
+int beaconTime[7];
 
 uint32_t timer = millis();
 
@@ -116,10 +122,10 @@ uint32_t timer = millis();
 void setup(void)
 {
   while (!Serial);  // required for Flora & Micro
-  delay(500);
+  delay(500);       // This may not be necessary, but it doesn't seem to be hurting anything
 
-  Serial3.begin(38400);
-  Serial.begin(115200);
+  XBEESerial.begin(38400);  // Baud rate from Nicole - shouldn't matter, but for consistency...
+  Serial.begin(115200);     // Higher baud rate to reduce impact on performance due to debugging
 
   Serial.println("Adafruit GPS library basic test!");
 
@@ -139,7 +145,11 @@ void setup(void)
   // Request updates on antenna status, comment out to keep quiet
   GPS.sendCommand(PGCMD_ANTENNA);
 
-  delay(1000);
+  beaconLat = 9999.99;
+  beaconLong = 9999.99;
+  beaconTime[7] = {99, 99, 99, 99, 99, 99, 99};
+
+  delay(1000); // Delay is copied from GPS example code, may not be necessary
 
   // Ask for firmware version
   GPSSerial.println(PMTK_Q_RELEASE);
@@ -184,20 +194,23 @@ void setup(void)
   ble.println(); // print line causes the command to execute
 
   // check response status
-  if (! ble.waitForOK() ) {
-    error(F("Didn't get the OK"));
+  while (! ble.waitForOK() ) { // Hang until bluetooth is connected
+    Serial.println(F("Bluetooth is not available, retry in 5 seconds"));
+    delay(5000);
   }
+
 
   Serial.println();
   Serial.println(F("Open your beacon app to test"));
 
-  Serial.println(F("Please use Adafruit Bluefruit LE app to connect in UART mode"));
-  Serial.println(F("Then Enter characters to send to Bluefruit"));
+  //Serial.println(F("Please use Adafruit Bluefruit LE app to connect in UART mode"));
+  //Serial.println(F("Then Enter characters to send to Bluefruit"));
   Serial.println();
 
   ble.verbose(false);  // debug info is a little annoying after this point!
 
   /* Wait for connection */
+  // DEBUG: This is only here for testing, and will be removed before deployment
   while (! ble.isConnected()) {
     delay(500);
   }
@@ -220,11 +233,10 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  double beaconLat;
-  double beaconLong;
-  int beaconTime[7];
+  //TODO: Move these to the setup / make them global
+
   // read data from the GPS in the 'main loop'
-  while (Serial1.available()) {
+  while (GPSSerial.available()) {
     char c = GPS.read();
     // if you want to debug, this is a good time to do it!
     if (GPSECHO)
@@ -237,8 +249,8 @@ void loop(void)
     // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
     //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
     if (!GPS.parse(GPS.lastNMEA())) { // this also sets the newNMEAreceived() flag to false
-      Serial.println("GPS Parse Error");
-      return; // we can fail to parse a sentence in which case we should just wait for another
+      Serial.println("Couldn't parse most recent NMEA string");
+      //return; // we can fail to parse a sentence in which case we should just wait for another
     }
   }
   // if millis() or timer wraps around, we'll just reset it
@@ -249,26 +261,26 @@ void loop(void)
   // approximately every 2 seconds or so, print out the current stats
   if (millis() - timer > 2000) {
     timer = millis(); // reset the timer
-        Serial.print("\nTime: ");
-        Serial.print(GPS.hour, DEC); Serial.print(':');
-        Serial.print(GPS.minute, DEC); Serial.print(':');
-        Serial.print(GPS.seconds, DEC); Serial.print('.');
-        Serial.println(GPS.milliseconds);
-        Serial.print("Date: ");
-        Serial.print(GPS.day, DEC); Serial.print('/');
-        Serial.print(GPS.month, DEC); Serial.print("/20");
-        Serial.println(GPS.year, DEC);
-        Serial.print("Fix: "); Serial.print((int)GPS.fix);
-        Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
+    Serial.print("\nTime: ");
+    Serial.print(GPS.hour, DEC); Serial.print(':');
+    Serial.print(GPS.minute, DEC); Serial.print(':');
+    Serial.print(GPS.seconds, DEC); Serial.print('.');
+    Serial.println(GPS.milliseconds);
+    Serial.print("Date: ");
+    Serial.print(GPS.day, DEC); Serial.print('/');
+    Serial.print(GPS.month, DEC); Serial.print("/20");
+    Serial.println(GPS.year, DEC);
+    Serial.print("Fix: "); Serial.print((int)GPS.fix);
+    Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
     if (GPS.fix) {
-            Serial.print("Location: ");
-            Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);
-            Serial.print(", ");
-            Serial.print(GPS.longitude, 4); Serial.println(GPS.lon);
-            Serial.print("Speed (knots): "); Serial.println(GPS.speed);
-            Serial.print("Angle: "); Serial.println(GPS.angle);
-            Serial.print("Altitude: "); Serial.println(GPS.altitude);
-            Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
+      Serial.print("Location: ");
+      Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);
+      Serial.print(", ");
+      Serial.print(GPS.longitude, 4); Serial.println(GPS.lon);
+      Serial.print("Speed (knots): "); Serial.println(GPS.speed);
+      Serial.print("Angle: "); Serial.println(GPS.angle);
+      Serial.print("Altitude: "); Serial.println(GPS.altitude);
+      Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
       beaconLat = GPS.latitude;
       beaconLong = GPS.longitude;
       beaconTime[0] = GPS.hour;
@@ -281,22 +293,21 @@ void loop(void)
     }
   }
   ble.println("AT+BLEUARTRX");
-  ble.readline();
-  if (strcmp(ble.buffer, "OK") == 0) {
+  ble.readline(); // Copy the BLE serial buffer into the BLE response buffer
+  if (strcmp(ble.buffer, "OK") == 0) {  // Check the contents of the BLE response buffer
     // no data
   }
   else {
-    Serial.println("End BLE Stuff"); //DEBUG
     // Some data was found, its in the buffer
     Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
     bool bleFlag = false;
     //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
     unsigned int bbuffSize = ((String)ble.buffer).length();
     if (ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~') {
-      bleFlag = true;
+      bleFlag = true; // There is a valid message
     }
     else {
-      bleFlag = false;
+      bleFlag = false; // There is not a valid message
     }
     if (bleFlag) {
       //Serial.print(ble.buffer[1]);
@@ -304,7 +315,7 @@ void loop(void)
       if (ble.buffer[1] == 'A' && ble.buffer[2] == 'T') {
         String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
         Serial.print("[Send] ");
-        Serial3.println(messageAlert);
+        XBEESerial.println(messageAlert);
 
         //TODO: pass to main station
       }
@@ -321,14 +332,15 @@ void loop(void)
   }
   //ble.waitForOK();
   String xBeeBuff = "";
-  while (Serial3.available()) {
+  unsigned int xbuffSize;
+  while (XBEESerial.available()) {
     Serial.println("inside while loop");
-    xBeeBuff  = Serial3.readString();
+    xBeeBuff  = XBEESerial.readString();
+    xbuffSize = ((String)xBeeBuff).length();
+    Serial.println(xBeeBuff);
+    Serial.println((String)xbuffSize);
   }
   bool xBeeFlag = false;
-  unsigned int xbuffSize = ((String)xBeeBuff).length();
-  Serial.println(xBeeBuff);
-  Serial.println((String)xbuffSize);
   if (xBeeBuff[0] == '#' && xBeeBuff[xbuffSize - 1] == '~') {
     xBeeFlag = true;
   }
@@ -344,9 +356,9 @@ void loop(void)
     }
     else if (xBeeBuff[1] == 'P' && xBeeBuff[2] == 'G' && xbuffSize == 4) {
       String messageBeaconAck = "#PG,ID," + (String)beaconid + ",LT," + (String)beaconLat + ",LN," + (String)beaconLong + ",TH," + beaconTime[0] + ",TM," + beaconTime[1] + ",TS," + beaconTime[2] + ",TF," + beaconTime[3] + ",TO," + beaconTime[4] + ",TD," + beaconTime[5] + ",TY," + beaconTime[6] + "~";
-                             
+
       Serial.println(messageBeaconAck);
-      Serial3.println(messageBeaconAck);
+      XBEESerial.println(messageBeaconAck);
     }
     else {
       Serial.println("invalid Xbee message");
