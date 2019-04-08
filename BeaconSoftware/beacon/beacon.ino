@@ -109,7 +109,8 @@ Adafruit_GPS GPS(&GPSSerial);
 #define GPSECHO false
 double beaconLat;
 double beaconLong;
-int beaconTime[7];
+int beaconTime[7] = {99, 99, 99, 99, 99, 99, 99};
+;
 
 uint32_t timer = millis();
 
@@ -147,8 +148,6 @@ void setup(void)
 
   beaconLat = 9999.99;
   beaconLong = 9999.99;
-  beaconTime[7] = {99, 99, 99, 99, 99, 99, 99};
-
   delay(1000); // Delay is copied from GPS example code, may not be necessary
 
   // Ask for firmware version
