@@ -248,7 +248,7 @@ void loop(void)
     // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
     //Serial.println(GPS.lastNMEA()); // this also sets the newNMEAreceived() flag to false
     if (!GPS.parse(GPS.lastNMEA())) { // this also sets the newNMEAreceived() flag to false
-      Serial.println("Couldn't parse most recent NMEA string");
+      //Serial.println("Couldn't parse most recent NMEA string");
       //return; // we can fail to parse a sentence in which case we should just wait for another
     }
   }
@@ -302,6 +302,7 @@ void loop(void)
     bool bleFlag = false;
     //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
     unsigned int bbuffSize = ((String)ble.buffer).length();
+    Serial.println(bbuffSize);
     if (ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~') {
       bleFlag = true; // There is a valid message
     }
@@ -314,6 +315,7 @@ void loop(void)
       if (ble.buffer[1] == 'A' && ble.buffer[2] == 'T') {
         String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
         Serial.print("[Send] ");
+        Serial.println(messageAlert);
         XBEESerial.println(messageAlert);
 
         //TODO: pass to main station

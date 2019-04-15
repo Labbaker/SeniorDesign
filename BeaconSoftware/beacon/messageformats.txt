@@ -21,3 +21,8 @@ Alert, concat'd id, deviceid, severity, time sent, latitude, longitude
 beacon back to mobile app with gps
 #GP,LT,0,LN,0~
 
+Phone requesting gps:
+#GP~
+
+Main station requesting status (ping)
+#PG~
