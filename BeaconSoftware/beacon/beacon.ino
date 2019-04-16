@@ -301,6 +301,8 @@ void loop(void)
     Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
     Serial.print("[Send] ");
     Serial.println(ble.buffer);
+    ble.print("AT+BLEUARTTX=");
+    ble.println(ble.buffer);
     bool bleFlag = false;
     //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
     unsigned int bbuffSize = ((String)ble.buffer).length();
