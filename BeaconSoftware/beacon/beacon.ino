@@ -303,6 +303,7 @@ void loop(void)
     //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
     unsigned int bbuffSize = ((String)ble.buffer).length();
     Serial.println(bbuffSize);
+    String messageAlert;
     if (ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~') {
       bleFlag = true; // There is a valid message
     }
@@ -313,12 +314,21 @@ void loop(void)
       //Serial.print(ble.buffer[1]);
       //Serial.println(ble.buffer[2]);
       if (ble.buffer[1] == 'A' && ble.buffer[2] == 'T') {
-        String messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1) + ",BI," + (String)beaconid + "~";
+             if(ble.buffer[4] == 'I' && ble.buffer[5] == 'D'){
+          messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1);
+          }
+          else if(ble.buffer[4] == 'L' && ble.buffer[5] == 'N'){
+            messageAlert += (String)ble.buffer).substring(4, bbuffSize - 5) + ",BI," + (String)beaconid + "~";
+            Serial.print("[Send] ");
+            Serial.println(messageAlert);
+            XBEESerial.println(messageAlert);
+            messageAlert = "";
+          }
+          else{
+            messageAlert += (String)ble.buffer).substring(4, bbuffSize - 5);
+          }
         Serial.print("[Send] ");
         Serial.println(messageAlert);
-        XBEESerial.println(messageAlert);
-
-        //TODO: pass to main station
       }
       else if (ble.buffer[1] == 'G' & ble.buffer[2] == 'P') {
         String messageGPS = "#GP,LT," + (String)beaconLat + ",LN," + (String)beaconLong + "~";
