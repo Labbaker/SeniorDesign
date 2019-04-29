@@ -110,7 +110,7 @@ Adafruit_GPS GPS(&GPSSerial);
 double beaconLat;
 double beaconLong;
 int beaconTime[7] = {99, 99, 99, 99, 99, 99, 99};
-;
+String messageAlert;
 
 uint32_t timer = millis();
 
@@ -291,6 +291,7 @@ void loop(void)
       beaconTime[6] = GPS.year;
     }
   }
+
   ble.println("AT+BLEUARTRX");
   ble.readline(); // Copy the BLE serial buffer into the BLE response buffer
   if (strcmp(ble.buffer, "OK") == 0) {  // Check the contents of the BLE response buffer
@@ -303,7 +304,7 @@ void loop(void)
     //int bbuffSize = sizeof(ble.buffer)/sizeof(ble.buffer[0]);
     unsigned int bbuffSize = ((String)ble.buffer).length();
     Serial.println(bbuffSize);
-    String messageAlert;
+
     if (ble.buffer[0] == '#' && ble.buffer[bbuffSize - 1] == '~') {
       bleFlag = true; // There is a valid message
     }
@@ -314,19 +315,25 @@ void loop(void)
       //Serial.print(ble.buffer[1]);
       //Serial.println(ble.buffer[2]);
       if (ble.buffer[1] == 'A' && ble.buffer[2] == 'T') {
-             if(ble.buffer[4] == 'I' && ble.buffer[5] == 'D'){
+        if (ble.buffer[4] == 'I' && ble.buffer[5] == 'D') {
           messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1);
-          }
-          else if(ble.buffer[4] == 'L' && ble.buffer[5] == 'N'){
-            messageAlert += ((String)ble.buffer).substring(4, bbuffSize - 5) + ",BI," + (String)beaconid + "~";
-            Serial.print("[Send] ");
-            Serial.println(messageAlert);
-            XBEESerial.println(messageAlert);
-            messageAlert = "";
-          }
-          else{
-            messageAlert += "," + ((String)ble.buffer).substring(4, bbuffSize - 5);
-          }
+        }
+        else if (ble.buffer[4] == 'L' && ble.buffer[5] == 'N') {
+          messageAlert = String(messageAlert + String(","));
+          messageAlert = String(messageAlert + ((String)ble.buffer).substring(4, bbuffSize - 1));
+          messageAlert = String(messageAlert + String(",BI,"));
+          messageAlert = String(messageAlert + (String)beaconid);
+          messageAlert = String(messageAlert + String("~"));
+          Serial.print("[Send] ");
+          Serial.println(messageAlert);
+          XBEESerial.println(messageAlert);
+          messageAlert = String("");
+        }
+        else {
+          messageAlert = String(messageAlert + String(","));
+          Serial.print(((String)ble.buffer).substring(4, bbuffSize - 1));
+          messageAlert = String(messageAlert + ((String)ble.buffer).substring(4, bbuffSize - 1));
+        }
         Serial.print("[Send] ");
         Serial.println(messageAlert);
       }
