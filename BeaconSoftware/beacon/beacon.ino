@@ -318,14 +318,14 @@ void loop(void)
           messageAlert = ((String)ble.buffer).substring(0, bbuffSize - 1);
           }
           else if(ble.buffer[4] == 'L' && ble.buffer[5] == 'N'){
-            messageAlert += (String)ble.buffer).substring(4, bbuffSize - 5) + ",BI," + (String)beaconid + "~";
+            messageAlert += ((String)ble.buffer).substring(4, bbuffSize - 5) + ",BI," + (String)beaconid + "~";
             Serial.print("[Send] ");
             Serial.println(messageAlert);
             XBEESerial.println(messageAlert);
             messageAlert = "";
           }
           else{
-            messageAlert += (String)ble.buffer).substring(4, bbuffSize - 5);
+            messageAlert += "," + ((String)ble.buffer).substring(4, bbuffSize - 5);
           }
         Serial.print("[Send] ");
         Serial.println(messageAlert);
